@@ -21,7 +21,10 @@ export class FirebaseService {
     messagingSenderId: '338033505662',
     appId: '1:338033505662:web:ded866bbf17722c7'
   };
-  public db;
+  private db;
+  private collections = {
+    playersCharactersUrl: 'playerCharacters',
+  }
 
   constructor() {
     firebase.initializeApp(this.firebaseConfig);
@@ -30,7 +33,7 @@ export class FirebaseService {
 
   writePlayerCharacter(character: PlayerCharacter) {
     this.db
-      .collection('playerCharacters')
+      .collection(this.collections.playersCharactersUrl)
       .doc(`${character.playerName}_${character.characterName}`)
       .set({
         stats: character
@@ -42,16 +45,34 @@ export class FirebaseService {
         console.error('Error writing document: ', error);
       });
   }
-
-  readPlayerCharacter() {
+  getAllPlayersCharacters() {
     this.db
-      .collection('playerCharacters')
+      .collection(this.collections.playersCharactersUrl)
       // .where('gettable', '==', true)
       .get()
       .then((characters) => {
         characters.forEach((character) => {
           console.log(character.id, ' => ', character.data());
         });
+      })
+      .catch((error) => {
+        console.log('Error getting documents: ', error);
+      });
+  }
+  getPlayerCharacterById(id: string) {
+    return this.db
+      .collection(this.collections.playersCharactersUrl)
+      .doc(id)
+      // .where('gettable', '==', true)
+      .get()
+      .then((character) => {
+        if (character.exists) {
+          console.log('Document data:', character.data());
+          return character.data();
+        } else {
+          // doc.data() will be undefined in this case
+          console.log('No such document!');
+        }
       })
       .catch((error) => {
         console.log('Error getting documents: ', error);

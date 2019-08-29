@@ -1,6 +1,4 @@
 <section class="character-about-container">
-  <h2 class="character-about-container__title">Оксана (Гремми)</h2>
-  <img class="character-about-container__image" src="" alt="">
-  <button (click)="getFromSerer()">get</button>
-  <button (click)="sendToServer()">send</button>
+  <h2 class="character-about-container__title">{{this.currentUser.playerName}} ({{this.currentUser.characterName}})</h2>
+  <img class="character-about-container__image" src="{{this.currentUser.imageUrl}}" alt="">
 </section>
