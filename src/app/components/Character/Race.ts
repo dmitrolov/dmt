@@ -58,19 +58,61 @@ const gameLanguages = {
     ru: 'Гномий'
   },
 };
+const tools = {
+  tool: {
+    tinsmith: {
+      en: 'Tinsmith Tools',
+      ru: 'Инструменты жестянщика 50 зм 10 фнт.',
+      cost: 5000,
+      weight: 10
+    }
+  }
+};
 const abilities = {
   race: {
     gnome: {
       gnomeCunning: {
-        type: 'skill',
         name: {
           eng: '',
           ru: 'Гномья хитрость',
         },
-        text: {
+        innerHTML: {
           eng: '',
-          ru: 'Вы совершаете с преимуществом спасброски Интеллекта, Мудрости и Харизмы против магии.'
+          ru: `<p>Вы совершаете с преимуществом спасброски:
+                <ul>
+                  <li>Интеллекта</li>
+                  <li>Мудрости</li>
+                  <li>Харизмы</li>
+                </ul>против магии.</p>`
         },
+      },
+      handicraftKnowledge: {
+        name: {
+          eng: 'Handicraft knowledge',
+          ru: 'Ремесленные знания'
+        },
+        innerHTML: {
+          ru:
+            `<p>
+            При совершении проверки Интеллекта (История) применительно к:
+             <ul>
+             <li>магическому</li>
+             <li>алхимическому</li>
+             <li>технологическому</li>
+            </ul>объекту, бонус мастерства удваивается.
+            </p>`
+        }
+      },
+      tinsmith: {
+        name: {
+          en: 'Tinsmith',
+          ru: 'Жестянщик'
+        },
+        innerHTML: {
+          ru: `<p>
+
+</p>`
+        }
       }
     }
   }
@@ -78,7 +120,7 @@ const abilities = {
 const racesList = {
   gnome: {
     raceName: raceNames.gnome,
-    ageModificator: 5,
+    ageModifier: 5,
     height: {
       min: 3,
       max: 4
@@ -102,7 +144,8 @@ const racesList = {
       rock: {
         subRaceName: subRaceNames.gnome.rock,
         constitution: 1,
-        abilities: []
+        abilities: [abilities.race.gnome.handicraftKnowledge],
+        toolsProficiency: [tools.tool.tinsmith]
       }
     }
   }

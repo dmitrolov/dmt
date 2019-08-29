@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-character-generator',
-  templateUrl: './character-generator.component.html',
-  styleUrls: ['./character-generator.component.scss']
+  selector: 'app-player-character-generator',
+  templateUrl: './player-character-generator.component.html',
+  styleUrls: ['./player-character-generator.component.scss']
 })
-export class CharacterGeneratorComponent implements OnInit {
+export class PlayerCharacterGeneratorComponent implements OnInit {
+
   private params: string;
   value: string;
 

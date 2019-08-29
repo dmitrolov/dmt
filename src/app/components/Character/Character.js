@@ -46,6 +46,9 @@ class Character {
       Deception: false,	      	// Обман
       Persuasion: false,	    	// Убеждение
     };
+    this.toolsProficiency = {
+      tinsmith: false
+    };
     this.abilities = [];
   }
 
