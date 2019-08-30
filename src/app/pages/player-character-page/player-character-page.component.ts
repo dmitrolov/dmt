@@ -2,8 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {PlayerCharacter} from './playerCharacter';
 import {FirebaseService} from '../../core/firebase/firebase.service';
 
-import { Router, ActivatedRoute, ParamMap } from '@angular/router';
-import { switchMap } from 'rxjs/operators';
+import {Router, ActivatedRoute, ParamMap} from '@angular/router';
+import {switchMap} from 'rxjs/operators';
 
 
 @Component({
@@ -19,16 +19,17 @@ export class PlayerCharacterPageComponent implements OnInit {
   };
 
   constructor(private firebaseService: FirebaseService, private route: ActivatedRoute) {
+
   }
 
   ngOnInit() {
-    const currentUserId = this.route.snapshot.paramMap.get('id');
-    this.firebaseService.getPlayerCharacterById(currentUserId)
-      .then((data) => {
-        this.currentUser = data.stats;
-      })
-      .then(() => {
-        console.log('THIS USER', this.currentUser);
+    this.route.url
+      .subscribe((url) => {
+        const currentUserId = url[url.length - 1].path;
+        this.firebaseService.subscribeOnCharacterChanges(currentUserId)
+          .onSnapshot((character) => {
+            this.currentUser = character.data().stats;
+          });
       });
   }
 }

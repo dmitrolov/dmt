@@ -6,6 +6,7 @@ import * as firebase from 'firebase/app';
 // import 'firebase/auth';
 import 'firebase/firestore';
 import {PlayerCharacter} from '../../pages/player-character-page/playerCharacter';
+import {Observable} from 'rxjs';
 
 
 @Injectable({
@@ -24,7 +25,7 @@ export class FirebaseService {
   private db;
   private collections = {
     playersCharactersUrl: 'playerCharacters',
-  }
+  };
 
   constructor() {
     firebase.initializeApp(this.firebaseConfig);
@@ -32,7 +33,7 @@ export class FirebaseService {
   }
 
   writePlayerCharacter(character: PlayerCharacter) {
-    this.db
+    return this.db
       .collection(this.collections.playersCharactersUrl)
       .doc(`${character.playerName}_${character.characterName}`)
       .set({
@@ -45,6 +46,7 @@ export class FirebaseService {
         console.error('Error writing document: ', error);
       });
   }
+
   getAllPlayersCharacters() {
     this.db
       .collection(this.collections.playersCharactersUrl)
@@ -59,6 +61,7 @@ export class FirebaseService {
         console.log('Error getting documents: ', error);
       });
   }
+
   getPlayerCharacterById(id: string) {
     return this.db
       .collection(this.collections.playersCharactersUrl)
@@ -77,5 +80,21 @@ export class FirebaseService {
       .catch((error) => {
         console.log('Error getting documents: ', error);
       });
+  }
+
+  subscribeOnDBChanges() {
+    return this.db
+      .collection(this.collections.playersCharactersUrl)
+      .onSnapshot((characters) => {
+        characters.forEach((character) => {
+          console.log(character.id, ' => ', character.data(), new Date().getTime());
+        });
+      });
+  }
+
+  subscribeOnCharacterChanges(id: string) {
+    return this.db
+      .collection(this.collections.playersCharactersUrl)
+      .doc(id);
   }
 }
