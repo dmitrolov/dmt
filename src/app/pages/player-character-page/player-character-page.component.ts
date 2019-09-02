@@ -12,11 +12,7 @@ import {switchMap} from 'rxjs/operators';
   styleUrls: ['./player-character-page.component.scss'],
 })
 export class PlayerCharacterPageComponent implements OnInit {
-  private currentUser: PlayerCharacter = {
-    playerName: 'untitled',
-    characterName: 'untitled',
-    imageUrl: 'assets/img/default-user-icon-4.jpg',
-  };
+  private currentUser: PlayerCharacter = new PlayerCharacter();
 
   constructor(private firebaseService: FirebaseService, private route: ActivatedRoute) {
 

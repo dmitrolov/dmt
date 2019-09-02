@@ -1,9 +1,5 @@
 class Character {
-  constructor(props) {
-    this.playerName     = props.playerName;		  // Имя игрока
-    this.characterName  = props.characterName;  // Имя персонажа
-    this.sex            = props.sex;					  // Пол персонажа
-    this.humanAge       = props.humanAge;			  // Возраст персонажа по человеческим меркам
+  constructor() {
 
     this.abilityScores = {
       strength: 0,

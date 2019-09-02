@@ -8,6 +8,9 @@ import {AppComponent} from './app.component';
 import {PlayerCharacterGeneratorComponent} from './pages/player-character-generator/player-character-generator.component';
 import {PlayerCharacterPageComponent} from './pages/player-character-page/player-character-page.component';
 import { HeaderComponent } from './header/header.component';
+import { ImageComponent } from './components/image/image.component';
+import { InputComponent } from './components/input/input.component';
+import { SelectComponent } from './components/select/select.component';
 
 const appRoutes: Routes = [
   {
@@ -26,7 +29,10 @@ const appRoutes: Routes = [
     AppComponent,
     PlayerCharacterGeneratorComponent,
     PlayerCharacterPageComponent,
-    HeaderComponent
+    HeaderComponent,
+    ImageComponent,
+    InputComponent,
+    SelectComponent
   ],
   imports: [
     BrowserModule,
