@@ -6,9 +6,7 @@ import {Component, Input, OnInit} from '@angular/core';
   styleUrls: ['./image.component.scss']
 })
 export class ImageComponent implements OnInit {
-  @Input() imageClassName: string;
-  @Input() imageUrl: string;
-  @Input() imageAlt: string;
+  @Input() options: ImageOptions;
 
   constructor() {
 
@@ -16,5 +14,9 @@ export class ImageComponent implements OnInit {
 
   ngOnInit() {
   }
-
+}
+interface ImageOptions {
+  class: string;
+  src: string;
+  alt: string;
 }

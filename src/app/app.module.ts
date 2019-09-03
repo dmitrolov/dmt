@@ -11,6 +11,15 @@ import { HeaderComponent } from './header/header.component';
 import { ImageComponent } from './components/image/image.component';
 import { InputComponent } from './components/input/input.component';
 import { SelectComponent } from './components/select/select.component';
+import { StatsComponent } from './pages/player-character-page/components/stats/stats.component';
+import { InventoryComponent } from './pages/player-character-page/components/inventory/inventory.component';
+import { DiaryComponent } from './pages/player-character-page/components/diary/diary.component';
+import { SkillsComponent } from './pages/player-character-page/components/skills/skills.component';
+import { GeneralInfoComponent } from './pages/player-character-page/components/stats/components/general-info/general-info.component';
+import { AttributesComponent } from './pages/player-character-page/components/stats/components/attributes/attributes.component';
+import { ProficiencyComponent } from './pages/player-character-page/components/stats/components/proficiency/proficiency.component';
+import { DescriptionComponent } from './pages/player-character-page/components/stats/components/description/description.component';
+import { MenuComponent } from './pages/player-character-page/components/menu/menu.component';
 
 const appRoutes: Routes = [
   {
@@ -21,7 +30,6 @@ const appRoutes: Routes = [
     path: 'player-character/:id',
     component: PlayerCharacterPageComponent,
   },
-
 ];
 
 @NgModule({
@@ -32,7 +40,16 @@ const appRoutes: Routes = [
     HeaderComponent,
     ImageComponent,
     InputComponent,
-    SelectComponent
+    SelectComponent,
+    StatsComponent,
+    InventoryComponent,
+    DiaryComponent,
+    SkillsComponent,
+    GeneralInfoComponent,
+    AttributesComponent,
+    ProficiencyComponent,
+    DescriptionComponent,
+    MenuComponent
   ],
   imports: [
     BrowserModule,

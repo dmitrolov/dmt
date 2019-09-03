@@ -1,4 +1,9 @@
-<section class="character-about-container">
-  <h2 class="character-about-container__title">{{this.currentUser.playerName}} ({{this.currentUser.characterName}})</h2>
-  <img class="character-about-container__image" src="{{this.currentUser.imageUrl}}" alt="">
-</section>
+<div class="container">
+  <div [ngSwitch]="menuOptions.currentTab" class="content">
+    <app-stats      [currentUser]="currentUser" *ngSwitchCase="menuOptions.menuItems[0].tab"></app-stats>
+    <app-inventory  [currentUser]="currentUser" *ngSwitchCase="menuOptions.menuItems[1].tab"></app-inventory>
+    <app-skills     [currentUser]="currentUser" *ngSwitchCase="menuOptions.menuItems[2].tab"></app-skills>
+    <app-diary      [currentUser]="currentUser" *ngSwitchCase="menuOptions.menuItems[3].tab"></app-diary>
+  </div>
+  <app-menu [menuOptions]="menuOptions"></app-menu>
+</div>
