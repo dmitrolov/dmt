@@ -97,4 +97,12 @@ export class FirebaseService {
       .collection(this.collections.playersCharactersUrl)
       .doc(id);
   }
+  subscribeOnCharacterChangesTest(id: string) {
+    return this.db
+      .collection(this.collections.playersCharactersUrl)
+      .doc(id)
+      .onSnapshot((character) => {
+        return character.data().stats;
+      });
+  }
 }

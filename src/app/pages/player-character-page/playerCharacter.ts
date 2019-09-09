@@ -9,21 +9,7 @@ export class PlayerCharacter {
   height: number;
   weight: number;
 
-  attributes: {
-    strength: number,
-    dexterity: number,
-    constitution: number,
-    intelligence: number,
-    wisdom: number,
-    charisma: number,
-
-    strengthMod: number,
-    dexterityMod: number,
-    constitutionMod: number,
-    intelligenceMod: number,
-    wisdomMod: number,
-    charismaMod: number,
-  };
+  attributes ={};
 
   skillsProficiency = { 	    // Владение навыками
     Athletics: false,		      // Атлетика

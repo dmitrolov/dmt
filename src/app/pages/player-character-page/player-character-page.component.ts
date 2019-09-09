@@ -29,8 +29,10 @@ export class PlayerCharacterPageComponent implements OnInit {
         const currentUserId = url[url.length - 1].path;
         this.firebaseService.subscribeOnCharacterChanges(currentUserId)
           .onSnapshot((character) => {
+            console.log(character.data().stats);
             this.currentUser = character.data().stats;
           });
+        console.log(this.firebaseService.subscribeOnCharacterChangesTest(currentUserId));
       });
   }
 }

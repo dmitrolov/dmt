@@ -3,6 +3,8 @@ import {NgModule} from '@angular/core';
 import {HttpClientModule} from '@angular/common/http';
 import {FormsModule} from '@angular/forms';
 import {RouterModule, Routes} from '@angular/router';
+import {StoreModule} from '@ngrx/store';
+import {Reducer} from './reducers/reducer';
 
 import {AppComponent} from './app.component';
 import {PlayerCharacterGeneratorComponent} from './pages/player-character-generator/player-character-generator.component';
@@ -57,7 +59,8 @@ const appRoutes: Routes = [
     FormsModule,
     RouterModule.forRoot(
       appRoutes,
-    )
+    ),
+    StoreModule.forRoot({message: Reducer})
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -9,7 +9,7 @@ import {PlayerCharacter} from '../../playerCharacter';
 export class StatsComponent implements OnInit {
   @Input() currentUser: PlayerCharacter;
   private menuOptions = {
-    currentTab: 'general-info',
+    currentTab: 'attributes',
     menuItems: [
       {tab: 'general-info', src: 'assets/img/character-page/general-info.png',  alt: 'menu image'},
       {tab: 'attributes',   src: 'assets/img/character-page/attributes.png',    alt: 'menu image'},
