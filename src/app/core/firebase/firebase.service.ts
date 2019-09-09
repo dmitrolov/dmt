@@ -5,7 +5,7 @@ import * as firebase from 'firebase/app';
 // // Add the Firebase products that you want to use
 // import 'firebase/auth';
 import 'firebase/firestore';
-import {PlayerCharacter} from '../../pages/player-character-page/playerCharacter';
+import {PlayerCharacterInterface} from '../../data/playerCharacterInterface';
 import {Observable} from 'rxjs';
 
 
@@ -32,7 +32,7 @@ export class FirebaseService {
     this.db = firebase.firestore();
   }
 
-  writePlayerCharacter(character: PlayerCharacter) {
+  writePlayerCharacter(character: PlayerCharacterInterface) {
     return this.db
       .collection(this.collections.playersCharactersUrl)
       .doc(`${character.playerName}_${character.characterName}`)
@@ -97,6 +97,7 @@ export class FirebaseService {
       .collection(this.collections.playersCharactersUrl)
       .doc(id);
   }
+
   subscribeOnCharacterChangesTest(id: string) {
     return this.db
       .collection(this.collections.playersCharactersUrl)
@@ -104,5 +105,16 @@ export class FirebaseService {
       .onSnapshot((character) => {
         return character.data().stats;
       });
+  }
+
+  getCharacterChanges(id: string) {
+    return new Observable(subscriber => {
+      this.db
+        .collection(this.collections.playersCharactersUrl)
+        .doc(id)
+        .onSnapshot((character) => {
+          subscriber.next(character.data().stats);
+        });
+    });
   }
 }

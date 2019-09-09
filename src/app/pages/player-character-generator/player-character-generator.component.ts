@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {PlayerCharacter} from '../player-character-page/playerCharacter';
+import {PlayerCharacterInterface} from '../../data/playerCharacterInterface';
 
 @Component({
   selector: 'app-player-character-generator',
@@ -7,7 +7,7 @@ import {PlayerCharacter} from '../player-character-page/playerCharacter';
   styleUrls: ['./player-character-generator.component.scss']
 })
 export class PlayerCharacterGeneratorComponent implements OnInit {
-  playerCharacter: PlayerCharacter;
+  playerCharacter: PlayerCharacterInterface;
   private formTabsOptions: number = 0;
   testOptions = [
     {value: 'djgherkgkusejrgskerjhfgsjhefg', text: 'name1'},
@@ -16,7 +16,7 @@ export class PlayerCharacterGeneratorComponent implements OnInit {
   ];
 
   constructor() {
-    this.playerCharacter = new PlayerCharacter();
+    // this.playerCharacter = new PlayerCharacterInterface();
   }
 
   ngOnInit() {

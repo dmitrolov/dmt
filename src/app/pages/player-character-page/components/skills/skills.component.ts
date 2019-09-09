@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {PlayerCharacter} from '../../playerCharacter';
+import {PlayerCharacterInterface} from '../../../../data/playerCharacterInterface';
 
 @Component({
   selector: 'app-skills',
@@ -7,7 +7,7 @@ import {PlayerCharacter} from '../../playerCharacter';
   styleUrls: ['./skills.component.scss']
 })
 export class SkillsComponent implements OnInit {
-  @Input() currentUser: PlayerCharacter;
+  @Input() currentUser: PlayerCharacterInterface;
   constructor() { }
 
   ngOnInit() {

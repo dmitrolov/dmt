@@ -3,8 +3,11 @@ import {Component} from '@angular/core';
 import {Store} from '@ngrx/store';
 import {Observable} from 'rxjs';
 
+import { Post } from './store/post/post.model';
+import * as PostActions from './store/post/post.actions'
+
 interface AppState {
-  message: string;
+  post: Post;
 }
 
 @Component({
@@ -14,17 +17,23 @@ interface AppState {
 })
 export class AppComponent {
   title = 'dmt';
-  message$: Observable<string>;
+  post: Observable<Post>;
+  text: string;
 
   constructor(private store: Store<AppState>) {
-    this.message$ = this.store.select('message');
+    this.post = this.store.select('post');
   }
 
-  msg1() {
-    this.store.dispatch({type: 'SPANISH', value: 'hello'});
+  editText() {
+    this.store.dispatch(new PostActions.EditText(this.text));
   }
-
-  msg2() {
-    this.store.dispatch({type: 'FRENCH'});
+  resetPost() {
+    this.store.dispatch(new PostActions.Reset());
+  }
+  upvote() {
+    this.store.dispatch(new PostActions.Upvote());
+  }
+  downvote() {
+    this.store.dispatch(new PostActions.Downvote());
   }
 }

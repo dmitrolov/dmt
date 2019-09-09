@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {PlayerCharacter} from '../../playerCharacter';
+import {PlayerCharacterInterface} from '../../../../data/playerCharacterInterface';
 
 @Component({
   selector: 'app-stats',
@@ -7,9 +7,9 @@ import {PlayerCharacter} from '../../playerCharacter';
   styleUrls: ['./stats.component.scss']
 })
 export class StatsComponent implements OnInit {
-  @Input() currentUser: PlayerCharacter;
+  @Input() currentUser: PlayerCharacterInterface;
   private menuOptions = {
-    currentTab: 'attributes',
+    currentTab: 'general-info',
     menuItems: [
       {tab: 'general-info', src: 'assets/img/character-page/general-info.png',  alt: 'menu image'},
       {tab: 'attributes',   src: 'assets/img/character-page/attributes.png',    alt: 'menu image'},
