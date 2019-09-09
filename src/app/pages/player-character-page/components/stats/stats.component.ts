@@ -7,7 +7,6 @@ import {PlayerCharacterInterface} from '../../../../data/playerCharacterInterfac
   styleUrls: ['./stats.component.scss']
 })
 export class StatsComponent implements OnInit {
-  @Input() currentUser: PlayerCharacterInterface;
   private menuOptions = {
     currentTab: 'general-info',
     menuItems: [

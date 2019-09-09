@@ -1,13 +1,12 @@
 import * as CharacterActions from './characters.actions';
 import {PlayerCharacterInterface} from '../../data/playerCharacterInterface';
-import {Gremmy} from '../../data/gremmy';
 
 export type Action = CharacterActions.All;
 
 const defaultState: PlayerCharacterInterface = {
   characterName: 'Default Name',
   playerName: 'Default Player Name',
-  imageUrl: 'src/assets/img/default-user-icon-4.jpg',
+  imageUrl: './assets/img/default-user-icon-4.jpg',
   attributes: {
     charisma: 0,
     constitution: 0,
@@ -18,8 +17,8 @@ const defaultState: PlayerCharacterInterface = {
   },
   height: 1,
   humanAge: 20,
-  race: 'gnome',
-  sex: 'male',
+  race: 'Default race',
+  sex: 'Default sex',
   weight: 1,
   skillsProficiency: {
     Acrobatics: false,
@@ -44,12 +43,8 @@ const defaultState: PlayerCharacterInterface = {
   }
 };
 
-const newState = (state, newData) => {
-  return Object.assign({}, state, newData);
-};
-
 export function characterReducer(state: PlayerCharacterInterface = defaultState, action: Action) {
-  console.log(action.type, state);
+  console.log('[characterReducer]', action.type, state);
 
   switch (action.type) {
     case CharacterActions.GET_CHARACTER:

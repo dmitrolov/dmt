@@ -1,7 +1,7 @@
 <div class="container">
   <div class="content" [ngSwitch]="menuOptions.currentTab">
-    <app-general-info *ngSwitchCase="menuOptions.menuItems[0].tab" [currentUser]="currentUser"></app-general-info>
-    <app-attributes   *ngSwitchCase="menuOptions.menuItems[1].tab" [currentUser]="currentUser"></app-attributes>
+    <app-general-info *ngSwitchCase="menuOptions.menuItems[0].tab"></app-general-info>
+    <app-attributes   *ngSwitchCase="menuOptions.menuItems[1].tab"></app-attributes>
     <app-proficiency  *ngSwitchCase="menuOptions.menuItems[2].tab"></app-proficiency>
     <app-description  *ngSwitchCase="menuOptions.menuItems[3].tab"></app-description>
   </div>

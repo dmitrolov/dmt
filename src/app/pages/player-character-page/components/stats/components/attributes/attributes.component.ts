@@ -1,6 +1,8 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {PlayerCharacterInterface} from '../../../../../../data/playerCharacterInterface';
 import attributesOptions from './attributesOptions';
+import {Store} from '@ngrx/store';
+import {StoreInterface} from '../../../../../../store/store.model';
 
 @Component({
   selector: 'app-attributes',
@@ -8,11 +10,13 @@ import attributesOptions from './attributesOptions';
   styleUrls: ['./attributes.component.scss']
 })
 export class AttributesComponent implements OnInit {
-  @Input() currentUser: PlayerCharacterInterface;
   private attributesOptions = attributesOptions;
-
-  constructor() {
-
+  private currentUser: PlayerCharacterInterface;
+  constructor(private store: Store<StoreInterface>) {
+    this.store.subscribe((test) => {
+      console.log('[Attributes component store subscribe]', test);
+      this.currentUser = test.character;
+    });
   }
 
   ngOnInit() {
