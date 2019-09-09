@@ -3,6 +3,9 @@ import {PlayerCharacterInterface} from '../../data/playerCharacterInterface';
 import {FirebaseService} from '../../core/firebase/firebase.service';
 
 import {Router, ActivatedRoute, ParamMap} from '@angular/router';
+import * as CharacterActions from '../../store/characters/characters.actions';
+import {Store} from '@ngrx/store';
+import {Observable} from 'rxjs';
 
 @Component({
   selector: 'app-player-character-page',
@@ -11,6 +14,7 @@ import {Router, ActivatedRoute, ParamMap} from '@angular/router';
 })
 export class PlayerCharacterPageComponent implements OnInit {
   private currentUser: PlayerCharacterInterface;
+  reduxCurrentUser: Observable<PlayerCharacterInterface>;
   private menuOptions = {
     currentTab: 'stats',
     menuItems: [
@@ -22,8 +26,11 @@ export class PlayerCharacterPageComponent implements OnInit {
     ]
   };
 
-  constructor(private firebaseService: FirebaseService, private route: ActivatedRoute) {
-  }
+  constructor(
+    private firebaseService: FirebaseService,
+    private route: ActivatedRoute,
+    private store: Store<PlayerCharacterInterface>
+  ) {}
 
   ngOnInit() {
     this.route.url
@@ -33,6 +40,7 @@ export class PlayerCharacterPageComponent implements OnInit {
           .getCharacterChanges(currentUserId)
           .subscribe((item: PlayerCharacterInterface) => {
             this.currentUser = item;
+            this.store.dispatch(new CharacterActions.SetCharacter(item));
           });
       });
   }

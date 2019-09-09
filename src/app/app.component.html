@@ -1,17 +1,5 @@
 <!--The content below is only a placeholder and can be replaced.-->
 <div class="container">
-  <div *ngIf="post | async as p">
-    <h2>{{p.text}}</h2>
-    <h4>Votes: {{p.likes}}</h4>
-
-    <button (click)="upvote()">upvote</button>
-    <button (click)="downvote()">downvote</button>
-    <button (click)="resetPost()">resetPost</button>
-
-    <input type="text" [(ngModel)]="text">
-    <button (click)="editText()">Change title</button>
-
-  </div>
   <app-header></app-header>
   <div class="content">
     <router-outlet></router-outlet>

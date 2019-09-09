@@ -4,8 +4,7 @@ import {HttpClientModule} from '@angular/common/http';
 import {FormsModule} from '@angular/forms';
 import {RouterModule, Routes} from '@angular/router';
 import {StoreModule} from '@ngrx/store';
-import {Reducer} from './store/reducer';
-import {postReducer} from './store/post/post.reducer';
+import {characterReducer} from './store/characters/characters.reducer';
 import {StoreDevtoolsModule} from '@ngrx/store-devtools';
 
 import {AppComponent} from './app.component';
@@ -63,8 +62,7 @@ const appRoutes: Routes = [
       appRoutes,
     ),
     StoreModule.forRoot({
-      post: postReducer,
-      message: Reducer
+      character: characterReducer
     }),
     StoreDevtoolsModule.instrument({
       maxAge: 10
