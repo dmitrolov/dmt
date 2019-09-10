@@ -5,7 +5,7 @@ import * as firebase from 'firebase/app';
 // // Add the Firebase products that you want to use
 // import 'firebase/auth';
 import 'firebase/firestore';
-import {PlayerCharacterInterface} from '../../data/playerCharacterInterface';
+import {PlayerCharacter} from '../../../assets/data/character/playerCharacter';
 import {Observable} from 'rxjs';
 
 
@@ -32,80 +32,80 @@ export class FirebaseService {
     this.db = firebase.firestore();
   }
 
-  writePlayerCharacter(character: PlayerCharacterInterface) {
-    return this.db
-      .collection(this.collections.playersCharactersUrl)
-      .doc(`${character.playerName}_${character.characterName}`)
-      .set({
-        stats: character
-      })
-      .then(() => {
-        console.log('Document successfully written!');
-      })
-      .catch((error) => {
-        console.error('Error writing document: ', error);
-      });
-  }
-
-  getAllPlayersCharacters() {
-    this.db
-      .collection(this.collections.playersCharactersUrl)
-      // .where('gettable', '==', true)
-      .get()
-      .then((characters) => {
-        characters.forEach((character) => {
-          console.log(character.id, ' => ', character.data());
-        });
-      })
-      .catch((error) => {
-        console.log('Error getting documents: ', error);
-      });
-  }
-
-  getPlayerCharacterById(id: string) {
-    return this.db
-      .collection(this.collections.playersCharactersUrl)
-      .doc(id)
-      // .where('gettable', '==', true)
-      .get()
-      .then((character) => {
-        if (character.exists) {
-          console.log('Document data:', character.data());
-          return character.data();
-        } else {
-          // doc.data() will be undefined in this case
-          console.log('No such document!');
-        }
-      })
-      .catch((error) => {
-        console.log('Error getting documents: ', error);
-      });
-  }
-
-  subscribeOnDBChanges() {
-    return this.db
-      .collection(this.collections.playersCharactersUrl)
-      .onSnapshot((characters) => {
-        characters.forEach((character) => {
-          console.log(character.id, ' => ', character.data(), new Date().getTime());
-        });
-      });
-  }
-
-  subscribeOnCharacterChanges(id: string) {
-    return this.db
-      .collection(this.collections.playersCharactersUrl)
-      .doc(id);
-  }
-
-  subscribeOnCharacterChangesTest(id: string) {
-    return this.db
-      .collection(this.collections.playersCharactersUrl)
-      .doc(id)
-      .onSnapshot((character) => {
-        return character.data().stats;
-      });
-  }
+  // writePlayerCharacter(character: PlayerCharacter) {
+  //   return this.db
+  //     .collection(this.collections.playersCharactersUrl)
+  //     .doc(`${character.playerName}_${character.characterName}`)
+  //     .set({
+  //       stats: character
+  //     })
+  //     .then(() => {
+  //       console.log('Document successfully written!');
+  //     })
+  //     .catch((error) => {
+  //       console.error('Error writing document: ', error);
+  //     });
+  // }
+  //
+  // getAllPlayersCharacters() {
+  //   this.db
+  //     .collection(this.collections.playersCharactersUrl)
+  //     // .where('gettable', '==', true)
+  //     .get()
+  //     .then((characters) => {
+  //       characters.forEach((character) => {
+  //         console.log(character.id, ' => ', character.data());
+  //       });
+  //     })
+  //     .catch((error) => {
+  //       console.log('Error getting documents: ', error);
+  //     });
+  // }
+  //
+  // getPlayerCharacterById(id: string) {
+  //   return this.db
+  //     .collection(this.collections.playersCharactersUrl)
+  //     .doc(id)
+  //     // .where('gettable', '==', true)
+  //     .get()
+  //     .then((character) => {
+  //       if (character.exists) {
+  //         console.log('Document data:', character.data());
+  //         return character.data();
+  //       } else {
+  //         // doc.data() will be undefined in this case
+  //         console.log('No such document!');
+  //       }
+  //     })
+  //     .catch((error) => {
+  //       console.log('Error getting documents: ', error);
+  //     });
+  // }
+  //
+  // subscribeOnDBChanges() {
+  //   return this.db
+  //     .collection(this.collections.playersCharactersUrl)
+  //     .onSnapshot((characters) => {
+  //       characters.forEach((character) => {
+  //         console.log(character.id, ' => ', character.data(), new Date().getTime());
+  //       });
+  //     });
+  // }
+  //
+  // subscribeOnCharacterChanges(id: string) {
+  //   return this.db
+  //     .collection(this.collections.playersCharactersUrl)
+  //     .doc(id);
+  // }
+  //
+  // subscribeOnCharacterChangesTest(id: string) {
+  //   return this.db
+  //     .collection(this.collections.playersCharactersUrl)
+  //     .doc(id)
+  //     .onSnapshot((character) => {
+  //       return character.data().stats;
+  //     });
+  // }
 
   getCharacterChanges(id: string) {
     return new Observable(subscriber => {

@@ -1,9 +1,9 @@
 <div class="container">
   <div [ngSwitch]="menuOptions.currentTab" class="content">
     <app-stats      *ngSwitchCase="menuOptions.menuItems[0].tab"></app-stats>
-    <app-inventory  [currentUser]="currentUser" *ngSwitchCase="menuOptions.menuItems[1].tab"></app-inventory>
-    <app-skills     [currentUser]="currentUser" *ngSwitchCase="menuOptions.menuItems[2].tab"></app-skills>
-    <app-diary      [currentUser]="currentUser" *ngSwitchCase="menuOptions.menuItems[3].tab"></app-diary>
+    <app-inventory  *ngSwitchCase="menuOptions.menuItems[1].tab"></app-inventory>
+    <app-skills     *ngSwitchCase="menuOptions.menuItems[2].tab"></app-skills>
+    <app-diary      *ngSwitchCase="menuOptions.menuItems[3].tab"></app-diary>
   </div>
   <app-menu [menuOptions]="menuOptions"></app-menu>
 </div>

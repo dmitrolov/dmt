@@ -23,6 +23,10 @@ import { AttributesComponent } from './pages/player-character-page/components/st
 import { ProficiencyComponent } from './pages/player-character-page/components/stats/components/proficiency/proficiency.component';
 import { DescriptionComponent } from './pages/player-character-page/components/stats/components/description/description.component';
 import { MenuComponent } from './pages/player-character-page/components/menu/menu.component';
+import { PickRaceComponent } from './pages/player-character-generator/components/pick-race/pick-race.component';
+import { PickClassComponent } from './pages/player-character-generator/components/pick-class/pick-class.component';
+import { PickBackgroundComponent } from './pages/player-character-generator/components/pick-background/pick-background.component';
+import { MainInfoComponent } from './pages/player-character-generator/components/main-info/main-info.component';
 
 const appRoutes: Routes = [
   {
@@ -52,7 +56,11 @@ const appRoutes: Routes = [
     AttributesComponent,
     ProficiencyComponent,
     DescriptionComponent,
-    MenuComponent
+    MenuComponent,
+    PickRaceComponent,
+    PickClassComponent,
+    PickBackgroundComponent,
+    MainInfoComponent
   ],
   imports: [
     BrowserModule,

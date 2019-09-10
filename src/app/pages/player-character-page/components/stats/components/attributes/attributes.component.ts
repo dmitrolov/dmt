@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {PlayerCharacterInterface} from '../../../../../../data/playerCharacterInterface';
+import {PlayerCharacter} from '../../../../../../../assets/data/character/playerCharacter';
 import attributesOptions from './attributesOptions';
 import {Store} from '@ngrx/store';
 import {StoreInterface} from '../../../../../../store/store.model';
@@ -11,7 +11,7 @@ import {StoreInterface} from '../../../../../../store/store.model';
 })
 export class AttributesComponent implements OnInit {
   private attributesOptions = attributesOptions;
-  private currentUser: PlayerCharacterInterface;
+  private currentUser: PlayerCharacter;
   constructor(private store: Store<StoreInterface>) {
     this.store.subscribe((test) => {
       console.log('[Attributes component store subscribe]', test);
