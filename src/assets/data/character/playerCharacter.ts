@@ -1,17 +1,15 @@
-import {ItemStats} from '../items/itemStatsInterface';
-
 export interface PlayerCharacter {
   aboutCharacter: {
     mainInfo: {               // Основная и обязательная информация о персонаже
       playerName: string      // Имя игрока
       characterName: string   // Имя персонажа
       race: string            // Расса
-      classes: {                // Класс
+      classes: {              // Класс
         name: string          // Название
         level: number         // Уровень
       }[]
       background: string      // Предыстория
-      feats: string[]         // Черты
+      feats?: string[]         // Черты
     };
 
     adventureInfo: {          // Информация необходимая для приключений и сражений

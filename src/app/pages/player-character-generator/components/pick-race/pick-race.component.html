@@ -1,1 +1,13 @@
-<p>pick-race works!</p>
+<div>
+  <h3>Выберите рассу персонажа</h3>
+  <select id="" [(ngModel)]="generatingCharacter.aboutCharacter.mainInfo.race">
+    <option *ngFor="let race of racesList" value="{{race.value}}">{{race.title.ru}}</option>
+  </select>
+  <div [ngSwitch]="generatingCharacter.aboutCharacter.mainInfo.race">
+    <div *ngFor="let race of racesList">
+      <div *ngSwitchCase="race.value">
+        {{race.value}}
+      </div>
+    </div>
+  </div>
+</div>

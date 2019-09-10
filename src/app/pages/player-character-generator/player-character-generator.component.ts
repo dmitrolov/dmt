@@ -26,13 +26,13 @@ export class PlayerCharacterGeneratorComponent implements OnInit {
 
   setCharacter() {
     console.log(this.generatingCharacter);
-    this.store.dispatch(new CharacterActions.SetCharacter(this.generatingCharacter));
+    // this.store.dispatch(new CharacterActions.SetCharacter(this.generatingCharacter));
   }
   switchTab(i: number) {
     this.formTabsOptions += i;
     if (this.formTabsOptions < 0) { this.formTabsOptions = 0; }
     if (this.formTabsOptions > 6) { this.formTabsOptions = 6; }
-    this.store.dispatch(new CharacterActions.SetCharacter(this.generatingCharacter));
+    // this.store.dispatch(new CharacterActions.SetCharacter(this.generatingCharacter));
   }
 
 }

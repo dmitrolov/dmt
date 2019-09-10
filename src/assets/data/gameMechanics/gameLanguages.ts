@@ -1,10 +1,16 @@
-export default {
-  general: {
-    eng: 'General',
-    ru: 'Общий',
+export default [
+  {
+    value: 'general',
+    title: {
+      eng: 'General',
+      ru: 'Общий',
+    }
   },
-  gnomish: {
-    eng: 'Gnomish',
-    ru: 'Гномий'
+  {
+    value: 'gnomish',
+    title: {
+      eng: 'Gnomish',
+      ru: 'Гномий',
+    }
   },
-};
+];
