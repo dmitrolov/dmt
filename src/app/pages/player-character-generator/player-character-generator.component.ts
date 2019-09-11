@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {PlayerCharacterModel} from '../../../assets/data/character/playerCharacter.model';
+import {PlayerCharacter} from '../../../assets/data/character/playerCharacter.model';
 import {Store} from '@ngrx/store';
 import * as CharacterActions from '../../store/characters/characters.actions';
 import {StoreInterface} from '../../store/store.model';
@@ -10,7 +10,7 @@ import {StoreInterface} from '../../store/store.model';
   styleUrls: ['./player-character-generator.component.scss']
 })
 export class PlayerCharacterGeneratorComponent implements OnInit {
-  generatingCharacter: PlayerCharacterModel;
+  generatingCharacter: PlayerCharacter;
   private formTabsOptions = 0;
 
   constructor(private store: Store<StoreInterface>) {

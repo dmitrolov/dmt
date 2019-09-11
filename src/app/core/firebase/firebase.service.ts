@@ -5,7 +5,7 @@ import * as firebase from 'firebase/app';
 // // Add the Firebase products that you want to use
 // import 'firebase/auth';
 import 'firebase/firestore';
-import {PlayerCharacterModel} from '../../../assets/data/character/playerCharacter';
+import {PlayerCharacter} from '../../../assets/data/character/playerCharacter.model';
 import {Observable} from 'rxjs';
 
 

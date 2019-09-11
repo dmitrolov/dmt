@@ -1,5 +1,5 @@
 import {Action} from '@ngrx/store';
-import {PlayerCharacterModel} from '../../../assets/data/character/playerCharacter';
+import {PlayerCharacter} from '../../../assets/data/character/playerCharacter.model';
 
 export const GET_CHARACTER          = '[Character] Get';
 export const GET_DEFAULT_CHARACTER  = '[Character] Get Default';
@@ -16,7 +16,7 @@ export class GetDefaultCharacter implements Action {
 export class SetCharacter implements Action {
   readonly type = SET_CHARACTER;
 
-  constructor(public character: PlayerCharacterModel) {
+  constructor(public character: PlayerCharacter) {
   }
 }
 

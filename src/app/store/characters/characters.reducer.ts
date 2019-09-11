@@ -1,74 +1,85 @@
 import * as CharacterActions from './characters.actions';
-import {PlayerCharacterModel} from '../../../assets/data/character/playerCharacter';
+import {PlayerCharacter} from '../../../assets/data/character/playerCharacter.model';
 
 export type Action = CharacterActions.All;
 
-const defaultState: PlayerCharacterModel = {
-  aboutCharacter: {
-    attributes: {
-      charisma: 0,
-      constitution: 0,
-      dexterity: 0,
-      intelligence: 0,
-      strength: 0,
-      wisdom: 0,
+const defaultState: PlayerCharacter = {
+  characterInfo: {
+    mainInfo: {
+      playerName: '',
+      characterName: '',
+      race: '',
+      subRace: '',
+      classes: [{
+        name: '',
+        level: 1,
+      }],
+      background: '',
+      feats: [],
     },
-    adventureInfo: {
-      armorClass: 0,
+    attributes: {
+      strength: 0,
+      dexterity: 0,
+      constitution: 0,
+      intelligence: 0,
+      wisdom: 0,
+      charisma: 0,
+    },
+    stats: {
+      size: 'medium',
+      speed: 0,
       darkVision: 0,
+      initiative: 0,
+      savingThrows: [],
+      resistance: [],
+      immunity: [],
+    },
+    action: {
+      hitPoints: {
+        max: 0,
+        temp: 0,
+        current: 0,
+      },
       deathSaves: {
         failures: 0,
         successes: 0,
       },
+      bonus: 0,
+      armorClass: 0,
       experience: 0,
-      hitPoints: {
-        current: 0,
-        max: 0,
-        temp: 0,
-      },
-      immunity: [],
-      initiative: 0,
       inspiration: false,
-      resistance: [],
-      savingThrows: [],
-      size: 0,
-      speed: 0,
-    },
-    description: {
-      alignment: 'undefined',
-      bonds: [],
-      flaws: [],
-      height: 0,
-      humanAge: 0,
-      ideals: [],
-      imageUrl: 'undefined',
-      personalityTraits: [],
-      sex: 'male',
-      weight: 0
-    },
-    mainInfo: {
-      background: '',
-      characterName: '',
-      classes: [{
-        name: 'undefined',
-        level: 1
-      }],
-      feats: [],
-      playerName: '',
-      race: 'undefined'
     },
     proficiency: {
-      armor: [],
-      bonus: 0,
       languages: [],
-      skills: [],
       tools: [],
-      weapons: []
+      armor: [],
+      skills: [],
+      weapons: [],
+    },
+    description: {
+      alignment: '',
+      height: 0,
+      weight: 0,
+      age: {
+        human: 0,
+        mod: 0,
+        total: 0,
+      },
+      imageUrl: '',
+      sex: 'male',
+    },
+    personalQualities: {
+      bonds: [],
+      flaws: [],
+      ideals: [],
+      personalityTraits: [],
     }
-  }
+  },
+  abilities: [],
 };
 
-export function characterReducer(state: PlayerCharacterModel = defaultState, action: Action) {
+export function characterReducer(state: PlayerCharacter = defaultState, action: Action) {
+  console.log('[characterReducer]', action.type, state);
   switch (action.type) {
     case CharacterActions.GET_CHARACTER:
       return state;
@@ -80,7 +91,4 @@ export function characterReducer(state: PlayerCharacterModel = defaultState, act
       return state;
 
   }
-
-  console.log('[characterReducer]', action.type, state);
-
 }

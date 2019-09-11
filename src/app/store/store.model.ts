@@ -1,5 +1,5 @@
-import {PlayerCharacterModel} from '../../assets/data/character/playerCharacter';
+import {PlayerCharacter} from '../../assets/data/character/playerCharacter.model';
 
 export interface StoreInterface {
-  character: PlayerCharacterModel;
+  character: PlayerCharacter;
 }

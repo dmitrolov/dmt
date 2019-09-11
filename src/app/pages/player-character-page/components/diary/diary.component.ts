@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {PlayerCharacterModel} from '../../../../../assets/data/character/playerCharacter';
+import {PlayerCharacter} from '../../../../../assets/data/character/playerCharacter.model';
 
 @Component({
   selector: 'app-diary',
@@ -7,7 +7,7 @@ import {PlayerCharacterModel} from '../../../../../assets/data/character/playerC
   styleUrls: ['./diary.component.scss']
 })
 export class DiaryComponent implements OnInit {
-  @Input() currentUser: PlayerCharacterModel;
+  @Input() currentUser: PlayerCharacter;
   constructor() { }
 
   ngOnInit() {

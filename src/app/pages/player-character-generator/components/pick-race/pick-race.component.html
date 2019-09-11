@@ -1,13 +1,23 @@
 <div>
   <h3>Выберите рассу персонажа</h3>
-  <select id="" [(ngModel)]="generatingCharacter.aboutCharacter.mainInfo.race">
+  <select id="race" [(ngModel)]="generatingCharacter.characterInfo.mainInfo.race">
     <option *ngFor="let race of racesList" value="{{race.value}}">{{race.title.ru}}</option>
   </select>
-  <div [ngSwitch]="generatingCharacter.aboutCharacter.mainInfo.race">
+  <div [ngSwitch]="generatingCharacter.characterInfo.mainInfo.race">
     <div *ngFor="let race of racesList">
       <div *ngSwitchCase="race.value">
-        {{race.value}}
+        <h3>Выберите подрассу персонажа</h3>
+        <select id="subRace" [(ngModel)]="generatingCharacter.characterInfo.mainInfo.subRace">
+          <option *ngFor="let subRace of race.subRaces" value="{{subRace.value}}">{{subRace.title.ru}}</option>
+        </select>
+        <div [ngSwitch]="generatingCharacter.characterInfo.mainInfo.subRace">
+          <div *ngFor="let subRace of race.subRaces">
+            <div *ngSwitchCase="subRace.value">
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
+  <button (click)="saveRace()">Save race</button>
 </div>

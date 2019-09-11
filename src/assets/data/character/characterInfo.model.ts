@@ -7,6 +7,7 @@ export interface CharacterInfo {
     playerName: string      // Имя игрока
     characterName: string   // Имя персонажа
     race: string            // Расса
+    subRace?: string        // Подрасса
     classes: {              // Класс
       name: string          // Название
       level: number         // Уровень
@@ -39,16 +40,19 @@ export interface CharacterInfo {
     alignment: string       // Мировозрение
     imageUrl: string        // Ссылка на портрет персонажа
     sex: 'male' | 'female'  // Пол персонажа
-    humanAge: number        // Возраст персонажа по человеческим меркам
+    age: {                  // Возраст персонажа
+      human: number         // Возраст персонажа по человеческим меркам
+      mod: number           // Модификатор возраста
+      total: number         // Реальный возраст персонажа
+    }
     height: number          // Рост персонажа
     weight: number          // Вес персонажа
-
-    personalQualities: {
-      personalityTraits: string[];
-      ideals: string[];
-      bonds: string[];
-      flaws: string[];
-    }
+  };
+  personalQualities: {
+    personalityTraits: string[];
+    ideals: string[];
+    bonds: string[];
+    flaws: string[];
   };
 
   attributes: CharacterAttributes;
