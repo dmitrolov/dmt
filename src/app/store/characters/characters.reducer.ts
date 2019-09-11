@@ -1,9 +1,9 @@
 import * as CharacterActions from './characters.actions';
-import {PlayerCharacter} from '../../../assets/data/character/playerCharacter';
+import {PlayerCharacterModel} from '../../../assets/data/character/playerCharacter';
 
 export type Action = CharacterActions.All;
 
-const defaultState: PlayerCharacter = {
+const defaultState: PlayerCharacterModel = {
   aboutCharacter: {
     attributes: {
       charisma: 0,
@@ -68,7 +68,7 @@ const defaultState: PlayerCharacter = {
   }
 };
 
-export function characterReducer(state: PlayerCharacter = defaultState, action: Action) {
+export function characterReducer(state: PlayerCharacterModel = defaultState, action: Action) {
   switch (action.type) {
     case CharacterActions.GET_CHARACTER:
       return state;

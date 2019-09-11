@@ -1,12 +1,15 @@
 // Категории размеров
-export default [
+interface CreatureSizes extends DataDom {
+  area: number;
+}
+export const creatureSize: CreatureSizes[] = [
   {
     value: 'tiny',
     title: {
-      eng: 'Tiny',
-      ru: 'Крошечный',
+      en: 'Tiny',
+      ru: 'Крошечный'
     },
-    area: 2.5, // 2,5 × 2,5 фута или меньше
+    area: 2.5 // 2,5 × 2,5 фута или меньше
   },
   {
     value: 'small',
@@ -41,9 +44,9 @@ export default [
     area: 15,
   },
   {
-    value: 'enormous',
+    value: 'gargantuan',
     title: {
-      en: 'Enormous',
+      en: 'Gargantuan',
       ru: 'Громадный',
     },
     area: 20, // 20 × 20 футов или больше

@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {PlayerCharacter} from '../../../../../assets/data/character/playerCharacter';
+import {PlayerCharacterModel} from '../../../../../assets/data/character/playerCharacter';
 
 @Component({
   selector: 'app-stats',

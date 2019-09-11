@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {PlayerCharacter} from '../../../../../assets/data/character/playerCharacter';
+import {PlayerCharacterModel} from '../../../../../assets/data/character/playerCharacter';
 
 @Component({
   selector: 'app-inventory',
@@ -7,7 +7,7 @@ import {PlayerCharacter} from '../../../../../assets/data/character/playerCharac
   styleUrls: ['./inventory.component.scss']
 })
 export class InventoryComponent implements OnInit {
-  @Input() currentUser: PlayerCharacter;
+  @Input() currentUser: PlayerCharacterModel;
   constructor() { }
 
   ngOnInit() {

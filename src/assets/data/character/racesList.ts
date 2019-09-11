@@ -1,3 +1,7 @@
+import {CharacterAttributes} from './character.attributes.model';
+import {CharacterProficiency} from './character.proficiency.model';
+import {CharacterStats} from './character.stats.model';
+
 interface RacesListInterface extends SubRace {
   // Description
   height: {
@@ -13,23 +17,15 @@ interface RacesListInterface extends SubRace {
     male: DataLocalization,
     female: DataLocalization,
   };
-  // Stats
-  size: string;
-  speed: number;
-  darkVision: number;
-  // Proficiency
-  languages: string[];
-
-  // Skills
   subRaces?: SubRace[];
 }
+
 interface SubRace extends DataDom {
-  attributesBonus: {
-    name: 'strength' | 'dexterity' | 'constitution' | 'intelligence' | 'wisdom' | 'charisma';
-    value: number;
-  }[];
-  abilities: string[];
-  toolsProficiency?: string[];
+  stats?: CharacterStats;
+  attributes: CharacterAttributes;
+  proficiency?: CharacterProficiency;
+
+  abilities?: string[];
 }
 
 export const racesList: RacesListInterface[] = [
@@ -84,70 +80,97 @@ export const racesList: RacesListInterface[] = [
         ],
       },
     },
-    attributesBonus: [{
-      name: 'constitution',
-      value: 2,
-    }],
-    size: 'medium'
-
-  },
-  {
-    value: 'gnome',
-    title: {
-      en: 'Gnome',
-      ru: 'Гном',
+    attributes: {
+      constitution: 2,
     },
-    height: {
-      min: 3,
-      max: 4
+    stats: {
+      size: 'small',
+      speed: 25,
+      darkVision: 60,
+      savingThrows: ['poison'],
+      resistance: ['poison'],
     },
-    weight: {
-      min: 40,
-      max: 45,
+    proficiency: {
+      weapons: ['battleAxe', 'handAxe', 'throwingHammer', 'warHammer'],
+      tools: ['Tool Proficiency. You gain proficiency with the artisan’s ' +
+      'tools of your choice: smith’s tools, brew er’s supplies, or mason’s tools'], // ??????????
+      languages: ['dwarvish', 'common'],
     },
-    ageModifier: 5,
-    names: {
-      male: {
-        en: [],
-        ru: [],
-      }
-      female: [],
-    },
-    size: 'small',
-    attributesBonus: [{
-      name: 'intelligence',
-      value: 2,
-    }],
-    speed: 25,
-    darkVision: 60,
-    languages: ['general', 'gnomish'],
-    abilities: ['gnomeCunning'],
+    abilities: [],
     subRaces: [
       {
-        value: 'gnomeForest',
-        attributesBonus: [{
-          value: 1,
-          name: 'dexterity',
-        }],
+        value: 'dwarfMountain',
         title: {
-          en: 'Forest gnome',
-          ru: 'Лесной гном',
+          en: 'Mountain Dwarf',
+          ru: 'Горный Дварф'
         },
-        abilities: [],
-      },
-      {
-        value: 'gnomeRock',
-        title: {
-          en: 'Rock gnome',
-          ru: 'Скальный гном',
+        attributes: {
+          strength: 2
         },
-        attributesBonus: [{
-          value: 1,
-          name: 'constitution',
-        }],
-        abilities: ['handicraftKnowledge'],
-        toolsProficiency: ['tinsmith']
+        proficiency: {
+          armor: ['light', 'medium'],
+        }
       }
     ]
+
   },
+  // {
+  //   value: 'gnome',
+  //   title: {
+  //     en: 'Gnome',
+  //     ru: 'Гном',
+  //   },
+  //   height: {
+  //     min: 3,
+  //     max: 4
+  //   },
+  //   weight: {
+  //     min: 40,
+  //     max: 45,
+  //   },
+  //   ageModifier: 5,
+  //   names: {
+  //     male: {
+  //       en: [],
+  //       ru: [],
+  //     }
+  //     female: [],
+  //   },
+  //   size: 'small',
+  //   attributesBonus: [{
+  //     name: 'intelligence',
+  //     value: 2,
+  //   }],
+  //   speed: 25,
+  //   darkVision: 60,
+  //   languages: ['general', 'gnomish'],
+  //   abilities: ['gnomeCunning'],
+  //   subRaces: [
+  //     {
+  //       value: 'gnomeForest',
+  //       attributesBonus: [{
+  //         value: 1,
+  //         name: 'dexterity',
+  //       }],
+  //       title: {
+  //         en: 'Forest gnome',
+  //         ru: 'Лесной гном',
+  //       },
+  //       abilities: [],
+  //     },
+  //     {
+  //       value: 'gnomeRock',
+  //       title: {
+  //         en: 'Rock gnome',
+  //         ru: 'Скальный гном',
+  //       },
+  //       attributesBonus: [{
+  //         value: 1,
+  //         name: 'constitution',
+  //       }],
+  //       abilities: ['handicraftKnowledge'],
+  //       toolsProficiency: ['tinsmith']
+  //     }
+  //   ]
+  // },
 ];

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {PlayerCharacter} from '../../../../../assets/data/character/playerCharacter';
+import {PlayerCharacterModel} from '../../../../../assets/data/character/playerCharacter.model';
 import {Store} from '@ngrx/store';
 import {StoreInterface} from '../../../../store/store.model';
 import {racesList} from '../../../../../assets/data/character/racesList';
@@ -11,7 +11,7 @@ import {racesList} from '../../../../../assets/data/character/racesList';
 })
 export class PickRaceComponent implements OnInit {
   private racesList = racesList;
-  private generatingCharacter: PlayerCharacter;
+  private generatingCharacter: PlayerCharacterModel;
   constructor(private store: Store<StoreInterface>) {
     store.subscribe((character) => {
       this.generatingCharacter = character.character;

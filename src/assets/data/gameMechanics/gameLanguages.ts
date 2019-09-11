@@ -1,8 +1,8 @@
 export default [
   {
-    value: 'general',
+    value: 'common',
     title: {
-      eng: 'General',
+      eng: 'Common',
       ru: 'Общий',
     }
   },
