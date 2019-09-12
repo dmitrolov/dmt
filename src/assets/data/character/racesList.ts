@@ -1,8 +1,6 @@
-import {CharacterAttributes} from './character.attributes.model';
-import {CharacterProficiency} from './character.proficiency.model';
-import {CharacterStats} from './character.stats.model';
+import {CharacterRace} from './info/character.race.model';
 
-interface RacesList extends SubRace {
+interface RacesList extends CharacterRace {
   generatorData: {
     height: {
       min: number;
@@ -14,20 +12,12 @@ interface RacesList extends SubRace {
     };
     ageModifier: number;
     names: {
-      male: DataLocalization;
-      female: DataLocalization;
+      male: DomLocalization;
+      female: DomLocalization;
     };
   };
-  subRaces?: SubRace[];
 }
 
-export interface SubRace extends DataDom {
-  stats: CharacterStats;
-  attributes: CharacterAttributes;
-  proficiency: CharacterProficiency;
-
-  abilities: string[];
-}
 
 export const racesList: RacesList[] = [
   {
@@ -95,9 +85,11 @@ export const racesList: RacesList[] = [
       size: 'small',
       speed: 25,
       darkVision: 60,
+      initiative: 0,
+    },
+    effects: {
       savingThrows: ['poison'],
       resistance: ['poison'],
-      initiative: 0,
       immunity: [],
     },
     proficiency: {
@@ -133,13 +125,15 @@ export const racesList: RacesList[] = [
         },
         abilities: [],
         stats: {
-          immunity: [],
           initiative: 0,
-          savingThrows: [],
           speed: 0,
           size: 'small',
-          resistance: [],
           darkVision: 0,
+        },
+        effects: {
+          resistance: [],
+          savingThrows: [],
+          immunity: [],
         }
       },
       {
@@ -159,11 +153,13 @@ export const racesList: RacesList[] = [
         abilities: ['dwarvenToughness'],
         stats: {
           darkVision: 0,
-          resistance: [],
           size: 'small',
           speed: 0,
-          savingThrows: [],
           initiative: 0,
+        },
+        effects: {
+          resistance: [],
+          savingThrows: [],
           immunity: [],
         },
         proficiency: {
@@ -231,8 +227,10 @@ export const racesList: RacesList[] = [
       size: 'small',
       speed: 25,
       darkVision: 60,
-      immunity: [],
       initiative: 0,
+    },
+    effects: {
+      immunity: [],
       savingThrows: [],
       resistance: [],
     },
@@ -276,14 +274,16 @@ export const racesList: RacesList[] = [
           languages: [],
         },
         stats: {
-          resistance: [],
-          savingThrows: [],
           initiative: 0,
-          immunity: [],
           speed: 0,
           size: 'small',
           darkVision: 0,
-        }
+        },
+        effects: {
+          resistance: [],
+          savingThrows: [],
+          immunity: [],
+        },
       },
       {
         value: 'gnomeRock',
@@ -311,11 +311,13 @@ export const racesList: RacesList[] = [
           darkVision: 0,
           size: 'small',
           speed: 0,
+          initiative: 0,
+        },
+        effects: {
           immunity: [],
           savingThrows: [],
           resistance: [],
-          initiative: 0,
-        }
+        },
       }
     ]
   },

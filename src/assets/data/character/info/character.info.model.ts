@@ -1,6 +1,7 @@
 import {CharacterProficiency} from './character.proficiency.model';
 import {CharacterAttributes} from './character.attributes.model';
 import {CharacterStats} from './character.stats.model';
+import {CharacterEffects} from './character.effects.model';
 
 export interface CharacterInfo {
   mainInfo: {               // Основная и обязательная информация о персонаже
@@ -18,6 +19,7 @@ export interface CharacterInfo {
   };
 
   stats: CharacterStats;
+  effects: CharacterEffects;
 
   action: {
     inspiration: boolean    // Вдохновение

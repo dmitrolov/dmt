@@ -1,8 +1,9 @@
-import {CharacterInfo} from './characterInfo.model';
+import {CharacterInfo} from './info/character.info.model';
 
 export interface PlayerCharacter {
   characterInfo: CharacterInfo;
   abilities: string[];
+  inventory: string[];
   // inventory: {
   //   weapon: {
   //     type: 'melee' | 'ranged'

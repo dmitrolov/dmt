@@ -2,7 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {PlayerCharacter} from '../../../../../assets/data/character/playerCharacter.model';
 import {Store} from '@ngrx/store';
 import {StoreInterface} from '../../../../store/store.model';
-import {racesList, SubRace} from '../../../../../assets/data/character/racesList';
+import {racesList} from '../../../../../assets/data/character/racesList';
+import {CharacterRace} from '../../../../../assets/data/character/info/character.race.model';
 
 @Component({
   selector: 'app-pick-race',
@@ -22,6 +23,21 @@ export class PickRaceComponent implements OnInit {
   ngOnInit() {
   }
 
+  // onRaceInParentComponentSet(value: boolean) {
+  //   this.generatingCharacter.characterInfo.mainInfo.race = String(value);
+  // }
+  // onSubRaceInParentComponentSet(value: boolean) {
+  //   this.generatingCharacter.characterInfo.mainInfo.subRace = String(value);
+  // }
+  // getSubRaceList(value: string) {
+  //   this.racesList.map((race) => {
+  //     if (race.value === value) {
+  //       console.log(race.subRaces);
+  //       return race.subRaces;
+  //     }
+  //   });
+  // }
+
   saveRace() {
     racesList.map((race) => {
       if (race.value === this.generatingCharacter.characterInfo.mainInfo.race) {
@@ -35,7 +51,8 @@ export class PickRaceComponent implements OnInit {
       }
     });
   }
-  setRace(character: PlayerCharacter, race: SubRace) {
+
+  setRace(character: PlayerCharacter, race: CharacterRace) {
     this.setAttributes(character, race);   // Set attributes
     this.setStats(character, race);        // Set stats
     this.setProficiency(character, race);  // Set proficiency
@@ -44,7 +61,7 @@ export class PickRaceComponent implements OnInit {
     });
   }
 
-  setAttributes(character: PlayerCharacter, race: SubRace) {
+  setAttributes(character: PlayerCharacter, race: CharacterRace) {
     character.characterInfo.attributes.strength += race.attributes.strength;
     character.characterInfo.attributes.dexterity += race.attributes.dexterity;
     character.characterInfo.attributes.constitution += race.attributes.constitution;
@@ -53,21 +70,21 @@ export class PickRaceComponent implements OnInit {
     character.characterInfo.attributes.charisma += race.attributes.charisma;
   }
 
-  setStats(character: PlayerCharacter, race: SubRace) {
+  setStats(character: PlayerCharacter, race: CharacterRace) {
     character.characterInfo.stats.size = race.stats.size;
     character.characterInfo.stats.speed += race.stats.speed;
     character.characterInfo.stats.darkVision += race.stats.darkVision;
     character.characterInfo.stats.initiative += race.stats.initiative;
 
-    const statsEffectsAttributes = ['savingThrows', 'resistance', 'immunity'];
-    statsEffectsAttributes.forEach((attribute) => {
-      race.stats[attribute].forEach((value) => {
-        character.characterInfo.stats[attribute].push(value);
+    const effectsAttributes = ['savingThrows', 'resistance', 'immunity'];
+    effectsAttributes.forEach((attribute) => {
+      race.effects[attribute].forEach((value) => {
+        character.characterInfo.effects[attribute].push(value);
       });
     });
   }
 
-  setProficiency(character: PlayerCharacter, race: SubRace) {
+  setProficiency(character: PlayerCharacter, race: CharacterRace) {
     const proficiencyAttributes: string[] = [];
     // tslint:disable-next-line:forin
     for (const proficiencyKey in race.proficiency) {

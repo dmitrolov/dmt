@@ -32,20 +32,20 @@ export class FirebaseService {
     this.db = firebase.firestore();
   }
 
-  // writePlayerCharacter(character: PlayerCharacter) {
-  //   return this.db
-  //     .collection(this.collections.playersCharactersUrl)
-  //     .doc(`${character.playerName}_${character.characterName}`)
-  //     .set({
-  //       stats: character
-  //     })
-  //     .then(() => {
-  //       console.log('Document successfully written!');
-  //     })
-  //     .catch((error) => {
-  //       console.error('Error writing document: ', error);
-  //     });
-  // }
+  writePlayerCharacter(character: PlayerCharacter) {
+    return this.db
+      .collection(this.collections.playersCharactersUrl)
+      .doc(`${character.characterInfo.mainInfo.playerName}_${character.characterInfo.mainInfo.characterName}`)
+      .set({
+        stats: character
+      })
+      .then(() => {
+        console.log('Document successfully written!');
+      })
+      .catch((error) => {
+        console.error('Error writing document: ', error);
+      });
+  }
   //
   // getAllPlayersCharacters() {
   //   this.db

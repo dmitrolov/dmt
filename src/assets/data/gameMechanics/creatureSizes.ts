@@ -1,5 +1,5 @@
 // Категории размеров
-interface CreatureSizes extends DataDom {
+interface CreatureSizes extends DomItem {
   area: number;
 }
 export const creatureSize: CreatureSizes[] = [

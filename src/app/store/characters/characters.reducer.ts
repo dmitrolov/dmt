@@ -30,6 +30,8 @@ const defaultState: PlayerCharacter = {
       speed: 0,
       darkVision: 0,
       initiative: 0,
+    },
+    effects: {
       savingThrows: [],
       resistance: [],
       immunity: [],
@@ -76,6 +78,7 @@ const defaultState: PlayerCharacter = {
     }
   },
   abilities: [],
+  inventory: [],
 };
 
 export function characterReducer(state: PlayerCharacter = defaultState, action: Action) {
