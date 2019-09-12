@@ -1,9 +1,9 @@
 import {Component, OnInit} from '@angular/core';
-import {PlayerCharacter} from '../../../assets/data/character/playerCharacter.model';
 import {Store} from '@ngrx/store';
 import * as CharacterActions from '../../store/characters/characters.actions';
 import {StoreInterface} from '../../store/store.model';
 import {FirebaseService} from '../../core/firebase/firebase.service';
+import {Character} from '../../models/character/character.model';
 
 @Component({
   selector: 'app-player-character-generator',
@@ -11,7 +11,7 @@ import {FirebaseService} from '../../core/firebase/firebase.service';
   styleUrls: ['./player-character-generator.component.scss']
 })
 export class PlayerCharacterGeneratorComponent implements OnInit {
-  private generatingCharacter: PlayerCharacter;
+  private generatingCharacter: Character;
   private formTabsOptions = 0;
 
   constructor(

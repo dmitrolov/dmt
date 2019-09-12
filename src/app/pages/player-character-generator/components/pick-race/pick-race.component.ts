@@ -1,9 +1,9 @@
 import {Component, OnInit} from '@angular/core';
-import {PlayerCharacter} from '../../../../../assets/data/character/playerCharacter.model';
 import {Store} from '@ngrx/store';
 import {StoreInterface} from '../../../../store/store.model';
-import {racesList} from '../../../../../assets/data/character/racesList';
-import {CharacterRace} from '../../../../../assets/data/character/info/character.race.model';
+import {racesList} from '../../../../models/character/racesList';
+import {CharacterRace} from '../../../../models/character/about/character.race.model';
+import {Character} from '../../../../models/character/character.model';
 
 @Component({
   selector: 'app-pick-race',
@@ -12,7 +12,7 @@ import {CharacterRace} from '../../../../../assets/data/character/info/character
 })
 export class PickRaceComponent implements OnInit {
   private racesList = racesList;
-  private generatingCharacter: PlayerCharacter;
+  private generatingCharacter: Character;
 
   constructor(private store: Store<StoreInterface>) {
     store.subscribe((character) => {
@@ -24,10 +24,10 @@ export class PickRaceComponent implements OnInit {
   }
 
   // onRaceInParentComponentSet(value: boolean) {
-  //   this.generatingCharacter.characterInfo.mainInfo.race = String(value);
+  //   this.generatingCharacter.about.info.race = String(value);
   // }
   // onSubRaceInParentComponentSet(value: boolean) {
-  //   this.generatingCharacter.characterInfo.mainInfo.subRace = String(value);
+  //   this.generatingCharacter.about.info.subRace = String(value);
   // }
   // getSubRaceList(value: string) {
   //   this.racesList.map((race) => {
@@ -40,11 +40,15 @@ export class PickRaceComponent implements OnInit {
 
   saveRace() {
     racesList.map((race) => {
-      if (race.value === this.generatingCharacter.characterInfo.mainInfo.race) {
+      if (race.value === this.generatingCharacter.about.info.race) {
         console.log('Character saved');
+        this.generatingCharacter.about.description.imageUrl = race.generatorData.image;
+        console.log('this.generatingCharacter.about.description.imageUrl',
+          this.generatingCharacter.about.description.imageUrl,
+          'race.generatorData.image', race.generatorData.image);
         this.setRace(this.generatingCharacter, race);
         race.subRaces.map((subRace) => {
-          if (subRace.value === this.generatingCharacter.characterInfo.mainInfo.subRace) {
+          if (subRace.value === this.generatingCharacter.about.info.subRace) {
             this.setRace(this.generatingCharacter, subRace);
           }
         });
@@ -52,7 +56,7 @@ export class PickRaceComponent implements OnInit {
     });
   }
 
-  setRace(character: PlayerCharacter, race: CharacterRace) {
+  setRace(character: Character, race: CharacterRace) {
     this.setAttributes(character, race);   // Set attributes
     this.setStats(character, race);        // Set stats
     this.setProficiency(character, race);  // Set proficiency
@@ -61,30 +65,30 @@ export class PickRaceComponent implements OnInit {
     });
   }
 
-  setAttributes(character: PlayerCharacter, race: CharacterRace) {
-    character.characterInfo.attributes.strength += race.attributes.strength;
-    character.characterInfo.attributes.dexterity += race.attributes.dexterity;
-    character.characterInfo.attributes.constitution += race.attributes.constitution;
-    character.characterInfo.attributes.intelligence += race.attributes.intelligence;
-    character.characterInfo.attributes.wisdom += race.attributes.wisdom;
-    character.characterInfo.attributes.charisma += race.attributes.charisma;
+  setAttributes(character: Character, race: CharacterRace) {
+    character.about.attributes.strength += race.attributes.strength;
+    character.about.attributes.dexterity += race.attributes.dexterity;
+    character.about.attributes.constitution += race.attributes.constitution;
+    character.about.attributes.intelligence += race.attributes.intelligence;
+    character.about.attributes.wisdom += race.attributes.wisdom;
+    character.about.attributes.charisma += race.attributes.charisma;
   }
 
-  setStats(character: PlayerCharacter, race: CharacterRace) {
-    character.characterInfo.stats.size = race.stats.size;
-    character.characterInfo.stats.speed += race.stats.speed;
-    character.characterInfo.stats.darkVision += race.stats.darkVision;
-    character.characterInfo.stats.initiative += race.stats.initiative;
+  setStats(character: Character, race: CharacterRace) {
+    character.about.stats.size = race.stats.size;
+    character.about.stats.speed += race.stats.speed;
+    character.about.stats.darkVision += race.stats.darkVision;
+    character.about.stats.initiative += race.stats.initiative;
 
     const effectsAttributes = ['savingThrows', 'resistance', 'immunity'];
     effectsAttributes.forEach((attribute) => {
       race.effects[attribute].forEach((value) => {
-        character.characterInfo.effects[attribute].push(value);
+        character.about.effects[attribute].push(value);
       });
     });
   }
 
-  setProficiency(character: PlayerCharacter, race: CharacterRace) {
+  setProficiency(character: Character, race: CharacterRace) {
     const proficiencyAttributes: string[] = [];
     // tslint:disable-next-line:forin
     for (const proficiencyKey in race.proficiency) {
@@ -92,7 +96,7 @@ export class PickRaceComponent implements OnInit {
     }
     proficiencyAttributes.forEach((attribute) => {
       race.proficiency[attribute].forEach((value => {
-        character.characterInfo.proficiency[attribute].push(value);
+        character.about.proficiency[attribute].push(value);
       }));
     });
   }

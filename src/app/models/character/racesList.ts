@@ -1,4 +1,4 @@
-import {CharacterRace} from './info/character.race.model';
+import {CharacterRace} from './about/character.race.model';
 
 interface RacesList extends CharacterRace {
   generatorData: {
@@ -15,6 +15,7 @@ interface RacesList extends CharacterRace {
       male: DomLocalization;
       female: DomLocalization;
     };
+    image: string;
   };
 }
 
@@ -72,6 +73,7 @@ export const racesList: RacesList[] = [
           ],
         },
       },
+      image: 'https://vignette.wikia.nocookie.net/forgottenrealms/images/b/b6/Dwarf-5e.png',
     },
     attributes: {
       constitution: 2,
@@ -222,6 +224,7 @@ export const racesList: RacesList[] = [
             'Элиджобелл', 'Элла'],
         }
       },
+      image: 'https://media-waterdeep.cursecdn.com/avatars/thumbnails/6/334/420/618/636272671553055253.png'
     },
     stats: {
       size: 'small',

@@ -5,7 +5,7 @@ import * as firebase from 'firebase/app';
 // // Add the Firebase products that you want to use
 // import 'firebase/auth';
 import 'firebase/firestore';
-import {PlayerCharacter} from '../../../assets/data/character/playerCharacter.model';
+import {Character} from '../../models/character/character.model';
 import {Observable} from 'rxjs';
 
 
@@ -32,10 +32,10 @@ export class FirebaseService {
     this.db = firebase.firestore();
   }
 
-  writePlayerCharacter(character: PlayerCharacter) {
+  writePlayerCharacter(character: Character) {
     return this.db
       .collection(this.collections.playersCharactersUrl)
-      .doc(`${character.characterInfo.mainInfo.playerName}_${character.characterInfo.mainInfo.characterName}`)
+      .doc(`${character.about.info.playerName}_${character.about.info.characterName}`)
       .set({
         stats: character
       })

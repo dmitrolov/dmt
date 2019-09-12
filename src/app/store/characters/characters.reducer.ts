@@ -1,11 +1,11 @@
 import * as CharacterActions from './characters.actions';
-import {PlayerCharacter} from '../../../assets/data/character/playerCharacter.model';
+import {Character} from '../../models/character/character.model';
 
 export type Action = CharacterActions.All;
 
-const defaultState: PlayerCharacter = {
-  characterInfo: {
-    mainInfo: {
+const defaultState: Character = {
+  about: {
+    info: {
       playerName: '',
       characterName: '',
       race: '',
@@ -78,10 +78,10 @@ const defaultState: PlayerCharacter = {
     }
   },
   abilities: [],
-  inventory: [],
+  equipment: [],
 };
 
-export function characterReducer(state: PlayerCharacter = defaultState, action: Action) {
+export function characterReducer(state: Character = defaultState, action: Action) {
   console.log('[characterReducer]', action.type, state);
   switch (action.type) {
     case CharacterActions.GET_CHARACTER:

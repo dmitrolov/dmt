@@ -1,11 +1,11 @@
-import {CharacterProficiency} from './character.proficiency.model';
-import {CharacterStats} from './character.stats.model';
-import {CharacterEffects} from './character.effects.model';
+import {CharacterProficiency} from './components/character.proficiency.model';
+import {CharacterEffects} from './components/character.effects.model';
+import {CharacterEquipment} from '../equipment/character.equipment.model';
 
 export interface CharacterClass extends DomItem {
   proficiency: CharacterProficiency;
   effects: CharacterEffects;
-  equipment: string[];
+  equipment: CharacterEquipment[];
 }
 
 export const CharacterClassesList: CharacterClass[] = [
@@ -27,6 +27,23 @@ export const CharacterClassesList: CharacterClass[] = [
       resistance: [],
       immunity: [],
     },
-    equipment: ['greataxe', 'handaxe', 'handaxe', 'explorersPack', 'javelin', 'javelin', 'javelin', 'javelin'],
+    equipment: [
+      {
+        value: 'greataxe',
+        count: 1,
+      },
+      {
+        value: 'handaxe',
+        count: 2,
+      },
+      {
+        value: 'explorersPack',
+        count: 1,
+      },
+      {
+        value: 'javelin',
+        count: 4,
+      },
+    ],
   }
 ];

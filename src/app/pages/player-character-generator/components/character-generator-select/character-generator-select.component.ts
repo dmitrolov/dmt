@@ -1,7 +1,4 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {PlayerCharacter} from '../../../../../assets/data/character/playerCharacter.model';
-import {Store} from '@ngrx/store';
-import {StoreInterface} from '../../../../store/store.model';
 
 @Component({
   selector: 'app-character-generator-select',

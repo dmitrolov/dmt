@@ -1,9 +1,9 @@
 import {Component, OnInit} from '@angular/core';
-import {PlayerCharacter} from '../../../../../assets/data/character/playerCharacter.model';
 import {Store} from '@ngrx/store';
 import {StoreInterface} from '../../../../store/store.model';
-import {CharacterClassesList} from '../../../../../assets/data/character/info/character.class.model';
-import {CharacterProficiency} from '../../../../../assets/data/character/info/character.proficiency.model';
+import {CharacterClassesList} from '../../../../models/character/about/character.class.model';
+import {CharacterProficiency} from '../../../../models/character/about/components/character.proficiency.model';
+import {Character} from '../../../../models/character/character.model';
 
 @Component({
   selector: 'app-pick-class',
@@ -12,7 +12,7 @@ import {CharacterProficiency} from '../../../../../assets/data/character/info/ch
 })
 export class PickClassComponent implements OnInit {
   private classList = CharacterClassesList;
-  private generatingCharacter: PlayerCharacter;
+  private generatingCharacter: Character;
 
   constructor(private store: Store<StoreInterface>) {
     store.subscribe((character) => {
@@ -25,24 +25,24 @@ export class PickClassComponent implements OnInit {
 
   saveClass() {
     this.classList.map((charClass) => {
-      if (this.generatingCharacter.characterInfo.mainInfo.classes[0].name === charClass.value) {
+      if (this.generatingCharacter.about.info.classes[0].name === charClass.value) {
         console.log('class saved');
         // Save function
         this.setProficiency(this.generatingCharacter, charClass.proficiency);
         const effectsAttributes = ['savingThrows', 'resistance', 'immunity'];
         effectsAttributes.forEach((attribute) => {
           charClass.effects[attribute].forEach((value) => {
-            this.generatingCharacter.characterInfo.effects[attribute].push(value);
+            this.generatingCharacter.about.effects[attribute].push(value);
           });
         });
         charClass.equipment.forEach((item) => {
-          this.generatingCharacter.inventory.push(item);
+          this.generatingCharacter.equipment.push(item);
         });
       }
     });
   }
 
-  setProficiency(character: PlayerCharacter, proficiency: CharacterProficiency) {
+  setProficiency(character: Character, proficiency: CharacterProficiency) {
     const proficiencyAttributes: string[] = [];
     // tslint:disable-next-line:forin
     for (const proficiencyKey in proficiency) {
@@ -50,7 +50,7 @@ export class PickClassComponent implements OnInit {
     }
     proficiencyAttributes.forEach((attribute) => {
       proficiency[attribute].forEach((value => {
-        character.characterInfo.proficiency[attribute].push(value);
+        character.about.proficiency[attribute].push(value);
       }));
     });
   }

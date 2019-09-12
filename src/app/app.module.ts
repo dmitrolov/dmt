@@ -10,7 +10,7 @@ import {StoreDevtoolsModule} from '@ngrx/store-devtools';
 import {AppComponent} from './app.component';
 import {PlayerCharacterGeneratorComponent} from './pages/player-character-generator/player-character-generator.component';
 import {PlayerCharacterPageComponent} from './pages/player-character-page/player-character-page.component';
-import { HeaderComponent } from './header/header.component';
+import { HeaderComponent } from './components/header/header.component';
 import { ImageComponent } from './components/image/image.component';
 import { InputComponent } from './components/input/input.component';
 import { SelectComponent } from './components/select/select.component';

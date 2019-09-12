@@ -1,7 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Store} from '@ngrx/store';
-import {PlayerCharacter} from '../../../../../assets/data/character/playerCharacter.model';
 import {StoreInterface} from '../../../../store/store.model';
+import {Character} from '../../../../models/character/character.model';
 
 @Component({
   selector: 'app-main-info',
@@ -9,7 +9,7 @@ import {StoreInterface} from '../../../../store/store.model';
   styleUrls: ['./main-info.component.scss']
 })
 export class MainInfoComponent implements OnInit {
-  private generatingCharacter: PlayerCharacter;
+  private generatingCharacter: Character;
   constructor(private store: Store<StoreInterface>) {
     store.subscribe((character) => {
       this.generatingCharacter = character.character;

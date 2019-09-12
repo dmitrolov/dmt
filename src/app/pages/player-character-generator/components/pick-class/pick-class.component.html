@@ -1,9 +1,9 @@
 <div>
   <h3>Выберите класс персонажа</h3>
-  <select id="characterClass" [(ngModel)]="generatingCharacter.characterInfo.mainInfo.classes[0].name">
+  <select id="characterClass" [(ngModel)]="generatingCharacter.about.info.classes[0].name">
     <option *ngFor="let charClass of classList" value="{{charClass.value}}">{{charClass.title.ru}}</option>
   </select>
-  <div [ngSwitch]="generatingCharacter.characterInfo.mainInfo.classes[0].name">
+  <div [ngSwitch]="generatingCharacter.about.info.classes[0].name">
     <div *ngFor="let charClass of classList">
       <div *ngSwitchCase="charClass.value">
       </div>

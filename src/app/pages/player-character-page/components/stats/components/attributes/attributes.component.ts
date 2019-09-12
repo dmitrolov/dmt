@@ -1,8 +1,8 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {PlayerCharacter} from '../../../../../../../assets/data/character/playerCharacter.model';
 import attributesOptions from './attributesOptions';
 import {Store} from '@ngrx/store';
 import {StoreInterface} from '../../../../../../store/store.model';
+import {Character} from '../../../../../../models/character/character.model';
 
 @Component({
   selector: 'app-attributes',
@@ -11,11 +11,10 @@ import {StoreInterface} from '../../../../../../store/store.model';
 })
 export class AttributesComponent implements OnInit {
   private attributesOptions = attributesOptions;
-  private currentUser: PlayerCharacter;
+  private currentUser: Character;
   constructor(private store: Store<StoreInterface>) {
-    this.store.subscribe((test) => {
-      console.log('[Attributes component store subscribe]', test);
-      this.currentUser = test.character;
+    this.store.subscribe((storeItem) => {
+      this.currentUser = storeItem.character;
     });
   }
 

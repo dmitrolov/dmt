@@ -1,16 +1,16 @@
 <div>
   <h3>Выберите рассу персонажа</h3>
-  <select id="race" [(ngModel)]="generatingCharacter.characterInfo.mainInfo.race">
+  <select id="race" [(ngModel)]="generatingCharacter.about.info.race">
     <option *ngFor="let race of racesList" value="{{race.value}}">{{race.title.ru}}</option>
   </select>
-  <div [ngSwitch]="generatingCharacter.characterInfo.mainInfo.race">
+  <div [ngSwitch]="generatingCharacter.about.info.race">
     <div *ngFor="let race of racesList">
       <div *ngSwitchCase="race.value">
         <h3>Выберите подрассу персонажа</h3>
-        <select id="subRace" [(ngModel)]="generatingCharacter.characterInfo.mainInfo.subRace">
+        <select id="subRace" [(ngModel)]="generatingCharacter.about.info.subRace">
           <option *ngFor="let subRace of race.subRaces" value="{{subRace.value}}">{{subRace.title.ru}}</option>
         </select>
-        <div [ngSwitch]="generatingCharacter.characterInfo.mainInfo.subRace">
+        <div [ngSwitch]="generatingCharacter.about.info.subRace">
           <div *ngFor="let subRace of race.subRaces">
             <div *ngSwitchCase="subRace.value">
             </div>
@@ -21,13 +21,13 @@
   </div>
 <!--  <app-character-generator-select-->
 <!--    (raceInParentComponentSet)="onRaceInParentComponentSet($event)"-->
-<!--    [switchingAttribute]="generatingCharacter.characterInfo.mainInfo.race"-->
+<!--    [switchingAttribute]="generatingCharacter.about.info.race"-->
 <!--    [options]="racesList"-->
 <!--  >-->
 <!--    <app-character-generator-select-->
 <!--      (raceInParentComponentSet)="onSubRaceInParentComponentSet($event)"-->
-<!--      [switchingAttribute]="generatingCharacter.characterInfo.mainInfo.subRace"-->
-<!--      [options]="getSubRaceList(generatingCharacter.characterInfo.mainInfo.race)"-->
+<!--      [switchingAttribute]="generatingCharacter.about.info.subRace"-->
+<!--      [options]="getSubRaceList(generatingCharacter.about.info.race)"-->
 <!--    ></app-character-generator-select>-->
 <!--  </app-character-generator-select>-->
   <button (click)="saveRace()">Save race</button>
