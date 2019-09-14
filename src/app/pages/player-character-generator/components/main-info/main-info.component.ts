@@ -9,7 +9,7 @@ import {Character} from '../../../../models/character/character.model';
   styleUrls: ['./main-info.component.scss']
 })
 export class MainInfoComponent implements OnInit {
-  private generatingCharacter: Character;
+  public generatingCharacter: Character;
   constructor(private store: Store<StoreInterface>) {
     store.subscribe((character) => {
       this.generatingCharacter = character.character;

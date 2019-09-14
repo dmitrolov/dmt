@@ -6,7 +6,7 @@ import {Component, OnInit} from '@angular/core';
   styleUrls: ['./stats.component.scss']
 })
 export class StatsComponent implements OnInit {
-  private menuOptions = {
+  public menuOptions = {
     currentTab: 'general-info',
     menuItems: [
       {tab: 'general-info', src: 'assets/img/character-page/general-info.png',  alt: 'menu image'},

@@ -11,8 +11,8 @@ import {Character} from '../../../../models/character/character.model';
   styleUrls: ['./pick-class.component.scss']
 })
 export class PickClassComponent implements OnInit {
-  private classList = CharacterClassesList;
-  private generatingCharacter: Character;
+  public classList = CharacterClassesList;
+  public generatingCharacter: Character;
 
   constructor(private store: Store<StoreInterface>) {
     store.subscribe((character) => {

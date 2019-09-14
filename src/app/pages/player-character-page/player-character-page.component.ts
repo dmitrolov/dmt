@@ -14,8 +14,7 @@ import {Character} from '../../models/character/character.model';
 })
 export class PlayerCharacterPageComponent implements OnInit {
   private currentUser: Character;
-  reduxCurrentUser: Observable<Character>;
-  private menuOptions = {
+  public menuOptions = {
     currentTab: 'stats',
     menuItems: [
       {tab: 'stats', src: 'assets/img/character-page/stats.png', alt: 'menu image'},

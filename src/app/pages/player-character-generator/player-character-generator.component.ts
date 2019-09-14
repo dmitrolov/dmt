@@ -12,7 +12,7 @@ import {Character} from '../../models/character/character.model';
 })
 export class PlayerCharacterGeneratorComponent implements OnInit {
   private generatingCharacter: Character;
-  private formTabsOptions = 0;
+  public formTabsOptions = 0;
 
   constructor(
     private store: Store<StoreInterface>,

@@ -10,8 +10,8 @@ import {Character} from '../../../../../../models/character/character.model';
   styleUrls: ['./attributes.component.scss']
 })
 export class AttributesComponent implements OnInit {
-  private attributesOptions = attributesOptions;
-  private currentUser: Character;
+  public attributesOptions = attributesOptions;
+  public currentUser: Character;
   constructor(private store: Store<StoreInterface>) {
     this.store.subscribe((storeItem) => {
       this.currentUser = storeItem.character;

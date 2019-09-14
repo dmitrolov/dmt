@@ -13,7 +13,7 @@ import {FirebaseService} from '../../../../core/firebase/firebase.service';
 })
 export class InventoryComponent implements OnInit {
   private allItems: Item[] = EquipmentData;
-  private equipment: {item: Item, count: number}[] = [];
+  public equipment: {item: Item, count: number}[] = [];
   private currentUser: Character;
 
   constructor(
