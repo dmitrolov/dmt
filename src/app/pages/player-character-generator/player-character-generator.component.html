@@ -1,10 +1,9 @@
 <button (click)="switchTab(-1)"><</button>
 <button (click)="switchTab(1)">></button>
 <div [ngSwitch]="formTabsOptions">
-  <app-main-info  *ngSwitchCase="0"></app-main-info>
-  <app-pick-race  *ngSwitchCase="1"></app-pick-race>
-  <app-pick-class *ngSwitchCase="2"></app-pick-class>
-
+  <app-main-info    *ngSwitchCase="0"></app-main-info>
+  <app-pick-race    *ngSwitchCase="1"></app-pick-race>
+  <app-pick-class   *ngSwitchCase="2"></app-pick-class>
 
 
 

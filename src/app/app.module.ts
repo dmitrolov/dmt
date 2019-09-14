@@ -27,6 +27,7 @@ import { PickRaceComponent } from './pages/player-character-generator/components
 import { PickClassComponent } from './pages/player-character-generator/components/pick-class/pick-class.component';
 import { PickBackgroundComponent } from './pages/player-character-generator/components/pick-background/pick-background.component';
 import { MainInfoComponent } from './pages/player-character-generator/components/main-info/main-info.component';
+// tslint:disable-next-line:max-line-length
 import { CharacterGeneratorSelectComponent } from './pages/player-character-generator/components/character-generator-select/character-generator-select.component';
 
 const appRoutes: Routes = [
