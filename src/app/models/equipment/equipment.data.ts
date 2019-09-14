@@ -1,8 +1,8 @@
-import {Item} from './item.model';
+import {Item} from './item/item.model';
 
-export const ItemData: Item[] = [
+export const EquipmentData: Item[] = [
   {
-    value: 'greataxe',
+    value: 'greatAxe',
     title: {
       ru: 'Секира',
       en: 'Great Axe',
@@ -17,7 +17,7 @@ export const ItemData: Item[] = [
     }
   },
   {
-    value: 'handaxe',
+    value: 'handAxe',
     title: {
       ru: 'Ручной топор',
       en: 'Hand Axe',

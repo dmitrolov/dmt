@@ -34,7 +34,7 @@ export class PlayerCharacterGeneratorComponent implements OnInit {
   }
 
   saveCharacter() {
-    this.firebaseService.writePlayerCharacter(this.generatingCharacter);
+    this.firebaseService.setPlayerCharacter(this.generatingCharacter);
   }
 
   switchTab(i: number) {

@@ -7,6 +7,7 @@ import * as firebase from 'firebase/app';
 import 'firebase/firestore';
 import {Character} from '../../models/character/character.model';
 import {Observable} from 'rxjs';
+import {Item} from '../../models/equipment/item/item.model';
 
 
 @Injectable({
@@ -25,6 +26,7 @@ export class FirebaseService {
   private db;
   private collections = {
     playersCharactersUrl: 'playerCharacters',
+    items: 'items',
   };
 
   constructor() {
@@ -32,7 +34,7 @@ export class FirebaseService {
     this.db = firebase.firestore();
   }
 
-  writePlayerCharacter(character: Character) {
+  setPlayerCharacter(character: Character) {
     return this.db
       .collection(this.collections.playersCharactersUrl)
       .doc(`${character.about.info.playerName}_${character.about.info.characterName}`)
@@ -47,20 +49,22 @@ export class FirebaseService {
       });
   }
   //
-  // getAllPlayersCharacters() {
-  //   this.db
-  //     .collection(this.collections.playersCharactersUrl)
-  //     // .where('gettable', '==', true)
-  //     .get()
-  //     .then((characters) => {
-  //       characters.forEach((character) => {
-  //         console.log(character.id, ' => ', character.data());
-  //       });
-  //     })
-  //     .catch((error) => {
-  //       console.log('Error getting documents: ', error);
-  //     });
-  // }
+  getAllPlayersCharacters() {
+    return new Observable(subscriber => {
+      this.db
+        .collection(this.collections.playersCharactersUrl)
+        // .where('gettable', '==', true)
+        .get()
+        .then((characters) => {
+          characters.forEach((character) => {
+            subscriber.next({id: character.id, character: character.data()});
+          });
+        })
+        .catch((error) => {
+          console.log('Error getting documents: ', error);
+        });
+    });
+  }
   //
   // getPlayerCharacterById(id: string) {
   //   return this.db
@@ -106,14 +110,36 @@ export class FirebaseService {
   //       return character.data().stats;
   //     });
   // }
-
-  getCharacterChanges(id: string) {
+  onCharacterChanges(id: string) {
     return new Observable(subscriber => {
       this.db
         .collection(this.collections.playersCharactersUrl)
         .doc(id)
         .onSnapshot((character) => {
           subscriber.next(character.data().stats);
+        });
+    });
+  }
+  setItem(item: Item) {
+    this.db
+      .collection(this.collections.items)
+      .doc(item.value)
+      .set(item)
+      .then(() => {
+        console.log('Item successfully written!');
+      })
+      .catch((error) => {
+        console.error('Error writing item: ', error);
+      });
+  }
+  getItem(id: string) {
+    return new Observable(subscriber => {
+      this.db
+        .collection('items')
+        .doc(id)
+        .get()
+        .then((item) => {
+          subscriber.next(item.data());
         });
     });
   }

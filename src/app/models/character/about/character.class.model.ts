@@ -29,11 +29,11 @@ export const CharacterClassesList: CharacterClass[] = [
     },
     equipment: [
       {
-        value: 'greataxe',
+        value: 'greatAxe',
         count: 1,
       },
       {
-        value: 'handaxe',
+        value: 'handAxe',
         count: 2,
       },
       {

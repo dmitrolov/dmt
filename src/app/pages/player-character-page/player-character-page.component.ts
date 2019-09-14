@@ -37,7 +37,7 @@ export class PlayerCharacterPageComponent implements OnInit {
       .subscribe((url) => {
         const currentUserId = url[url.length - 1].path;
         this.firebaseService
-          .getCharacterChanges(currentUserId)
+          .onCharacterChanges(currentUserId)
           .subscribe((item: Character) => {
             this.currentUser = item;
             this.store.dispatch(new CharacterActions.SetCharacter(item));
