@@ -1,0 +1,18 @@
+<div class="main-container">
+  <div class="attribute-container">
+    <h3>Характеристики</h3>
+
+    <div class="attributeContainer" *ngFor="let option of attributesOptions">
+      <img [src]="option.src" alt="">
+      <div class="attributeInfo">
+        <span class="title">{{option.text}}</span>
+        <span class="amount">{{currentUser.about.attributes[option.attribute]}}</span>
+        <span class="modifier">{{getAttributeModifier(currentUser.about.attributes[option.attribute])}}</span>
+      </div>
+      <ul class="skills">
+        <li *ngFor="let skill of option.skills" class="">{{skill.text}}</li>
+      </ul>
+    </div>
+  </div>
+
+</div>

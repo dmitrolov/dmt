@@ -1,0 +1,6 @@
+<div class="{{class}}">
+  <label for="{{id}}">{{labelValue}}</label>
+  <select id="{{id}}">
+    <option *ngFor="let option of options" value="{{option.value}}">{{option.text}}</option>
+  </select>
+</div>

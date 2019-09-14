@@ -1,0 +1,13 @@
+<div class="menu">
+  <div
+    class="menu__item"
+    *ngFor="let option of menuOptions.menuItems"
+  >
+    <img
+      class="menu__image"
+      [src]="option.src"
+      [alt]="option.alt"
+      (click)="menuOptions.currentTab = option.tab"
+    >
+  </div>
+</div>
