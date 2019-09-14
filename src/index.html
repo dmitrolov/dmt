@@ -4,18 +4,35 @@
   <meta charset="utf-8">
   <title>DMT</title>
   <base href="/">
-
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self';
-  script-src 'self';
-  style-src 'self';
-  img-src 'self';
-  connect-src 'self';
-  font-src 'self';"
-  >
-  <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico">
+  <meta content="width=device-width, initial-scale=1" name="viewport">
+  <meta
+    content="
+      default-src
+        'unsafe-eval'
+        http://*;
+      script-src-elem
+        http://localhost:4200/
+        https://dnd-master-tools.herokuapp.com/
+        http://*;
+      style-src 'unsafe-inline';
+      object-src 'self';
+      img-src
+        'self'
+        http://*;
+      media-src 'self';
+      frame-src 'self';
+      font-src 'self';
+      connect-src
+        https://firestore.googleapis.com/
+        http://localhost:4200/
+        ws://localhost:4200/
+        https://dnd-master-tools.herokuapp.com/
+        http://*;
+    "
+    http-equiv="Content-Security-Policy">
+  <link href="assets/img/favicon.ico" rel="icon" type="image/x-icon">
 </head>
 <body>
-  <app-root></app-root>
+<app-root></app-root>
 </body>
 </html>
