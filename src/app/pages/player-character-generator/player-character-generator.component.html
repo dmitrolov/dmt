@@ -1,0 +1,99 @@
+<button (click)="switchTab(-1)"><</button>
+<button (click)="switchTab(1)">></button>
+<div [ngSwitch]="formTabsOptions">
+  <app-main-info  *ngSwitchCase="0"></app-main-info>
+  <app-pick-race  *ngSwitchCase="1"></app-pick-race>
+  <app-pick-class *ngSwitchCase="2"></app-pick-class>
+
+
+
+
+<!--  <ng-template ngSwitchCase="1">-->
+<!--    <h3>Давайте выберем рассу персонажа</h3>-->
+<!--    <div class="main-character-generator__item">-->
+<!--      <label for="race">Расса</label>-->
+<!--      <select [(ngModel)]="playerCharacter.race" name="" id="race">-->
+<!--        <option value="gnome">Гном</option>-->
+<!--        <option value="human">Человек</option>-->
+<!--      </select>-->
+<!--    </div>-->
+<!--    <div class="main-character-generator__item">-->
+<!--      <label for="sex">Пол</label>-->
+<!--      <select name="" id="sex" [(ngModel)]="playerCharacter.sex">-->
+<!--        <option value="male">Мужской ♂</option>-->
+<!--        <option value="female">Женский ♀</option>-->
+<!--      </select>-->
+<!--    </div>-->
+<!--    <div class="main-character-generator__item">-->
+<!--      <label for="humanAge">Возраст (Чел.)</label>-->
+<!--      <input type="text" id="humanAge" [(ngModel)]="playerCharacter.humanAge" placeholder="">-->
+<!--    </div>-->
+<!--    <div class="main-character-generator__item">-->
+<!--      <label for="height">Рост</label>-->
+<!--      <select [(ngModel)]="playerCharacter.height" name="" id="height">-->
+<!--        <option value="0.8">Очень низкий</option>-->
+<!--        <option value="0.9">Низкий</option>-->
+<!--        <option value="1">Средний</option>-->
+<!--        <option value="1.1">Высокий</option>-->
+<!--        <option value="1.2">Очень высокий</option>-->
+<!--      </select>-->
+<!--    </div>-->
+<!--    <div class="main-character-generator__item">-->
+<!--      <label for="weight">Вес</label>-->
+<!--      <select [(ngModel)]="playerCharacter.weight" name="" id="weight">-->
+<!--        <option value="0.8">Очень низкий</option>-->
+<!--        <option value="0.9">Низкий</option>-->
+<!--        <option value="1">Средний</option>-->
+<!--        <option value="1.1">Высокий</option>-->
+<!--        <option value="1.2">Очень высокий</option>-->
+<!--      </select>-->
+<!--    </div>-->
+<!--  </ng-template>-->
+<!--  <ng-template ngSwitchCase="2">-->
+<!--    <h3>Выберите клас персонажа</h3>-->
+<!--  </ng-template>-->
+<!--  <ng-template ngSwitchCase="3">-->
+<!--    <h3>Предыстория</h3>-->
+<!--  </ng-template>-->
+<!--  <ng-template ngSwitchCase="4">-->
+<!--    <h3>Теперь ролим атрибуты</h3>-->
+<!--  </ng-template>-->
+<!--  <ng-template ngSwitchCase="5">-->
+<!--    <h3>Стартовая экипировка</h3>-->
+<!--  </ng-template>-->
+<!--  <ng-template ngSwitchCase="6">-->
+<!--    <h3>Последние штрихи</h3>-->
+<!--    <div class="main-character-generator__item">-->
+<!--      <label for="characterName">Дайте имя своему персонажу</label>-->
+<!--      <input-->
+<!--        type="text"-->
+<!--        id="characterName"-->
+<!--        [(ngModel)]="playerCharacter.characterName"-->
+<!--        placeholder=""-->
+<!--      >-->
+<!--    </div>-->
+<!--    <div class="main-character-generator__item">-->
+<!--      <label for="imageUrl">Как он выглядит?</label>-->
+<!--      <input-->
+<!--        type="text"-->
+<!--        id="imageUrl"-->
+<!--        [(ngModel)]="playerCharacter.imageUrl"-->
+<!--        placeholder="Ссылка на портрет"-->
+<!--      >-->
+<!--    </div>-->
+<!--    <div [className]="'main-character-generator__item'">-->
+<!--      <img-->
+<!--        [className]="'main-character-generator__image'"-->
+<!--        src="{{playerCharacter.imageUrl || 'assets/img/default-user-icon-4.jpg'}}"-->
+<!--        alt="Player Character Image"-->
+<!--      >-->
+<!--    </div>-->
+<!--  </ng-template>-->
+<!--</div>-->
+
+<div class="main-character-generator">
+  <button (click)="setCharacter()">Предпросмотр персонажа</button>
+  <br>
+  <button (click)="saveCharacter()">Save</button>
+</div>
+
