@@ -1,10 +1,15 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {Store} from '@ngrx/store';
 import {StoreInterface} from '../../../../store/store.model';
-import {EquipmentData} from '../../../../models/equipment/equipment.data';
 import {Item} from '../../../../models/equipment/item/item.model';
 import {Character} from '../../../../models/character/character.model';
 import {FirebaseService} from '../../../../core/firebase/firebase.service';
+import {MatSort, MatTableDataSource} from '@angular/material';
+
+export interface PlayerEquipmentView extends Item {
+  count: number;
+}
+const equipmentView: PlayerEquipmentView[] = [];
 
 @Component({
   selector: 'app-inventory',
@@ -12,15 +17,18 @@ import {FirebaseService} from '../../../../core/firebase/firebase.service';
   styleUrls: ['./inventory.component.scss']
 })
 export class InventoryComponent implements OnInit {
-  private allItems: Item[] = EquipmentData;
-  public equipment: {item: Item, count: number}[] = [];
-  private currentUser: Character;
-  private searchingItem: string;
+  public currentUser: Character;
+  searchingItem: string;
+  displayedColumns: string[] = ['name', 'count', 'weight', 'cost'];
+  dataSource = new MatTableDataSource(equipmentView);
+  @ViewChild(MatSort, {static: true}) sort: MatSort;
+
+  // private allItems: Item[] = EquipmentData;
 
   constructor(
     private store: Store<StoreInterface>,
     private db: FirebaseService,
-    ) {
+  ) {
     this.store.subscribe((storeItem) => {
       this.currentUser = storeItem.character;
     });
@@ -29,14 +37,15 @@ export class InventoryComponent implements OnInit {
   ngOnInit() {
     this.currentUser.equipment.forEach((characterItem) => {
       this.db.getItem(characterItem.value).subscribe((element: Item) => {
-        this.equipment.push({item: element, count: characterItem.count});
+        equipmentView.push({...element, count: characterItem.count});
+        this.dataSource.sort = this.sort;
       });
-
     });
   }
+
   addItems() {
-    this.allItems.forEach((item) => {
-      this.db.setItem(item);
-    });
+    // this.allItems.forEach((item) => {
+    //   this.db.setItem(item);
+    // });
   }
 }

@@ -1,18 +1,22 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import {Item} from '../../../../../models/equipment/item/item.model';
+import {PlayerEquipmentView} from '../inventory.component';
+import {MatTableDataSource} from '@angular/material';
 
 @Pipe({
   name: 'search'
 })
 export class SearchPipe implements PipeTransform {
 
-  transform(items: {item: Item, count: number}[], searchString: string): any {
+  transform(tableData: MatTableDataSource<PlayerEquipmentView>, searchString: string): any {
     // check if searchString undefined
-    if (searchString === undefined || searchString === '') {return items; }
-    return  items.filter(item => {
-      return item.item.title.ru.toString().toLowerCase().includes(searchString.toLowerCase())
-        || item.item.title.en.toString().toLowerCase().includes(searchString.toLowerCase())
-        || item.item.value.toString().toLowerCase().includes(searchString.toLowerCase());
+    if (searchString === undefined || searchString === '') {return tableData; }
+    return  tableData.data.filter(item => {
+      console.log('[tableData.data]', tableData.data);
+      console.log('[item]', item);
+      return item.title.ru.toString().toLowerCase().includes(searchString.toLowerCase())
+        || item.title.en.toString().toLowerCase().includes(searchString.toLowerCase())
+        || item.value.toString().toLowerCase().includes(searchString.toLowerCase());
     });
   }
 

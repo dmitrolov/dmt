@@ -3,23 +3,35 @@
     <label for="search">Search item</label>
     <input id="search" type="text" [(ngModel)]="searchingItem">
   </div>
-  <table border="1" width="100%">
-    <thead>
-    <tr>
-      <td>Name</td>
-      <td>Count</td>
-      <td>Weight</td>
-      <td>Cost</td>
-    </tr>
-    </thead>
-    <tbody>
-    <tr *ngFor="let item of equipment | search:searchingItem">
-      <td>{{item.item.title.ru}}</td>
-      <td>{{item.count}}</td>
-      <td>{{item.item.weight * item.count}}</td>
-      <td>{{item.item.cost * item.count}}</td>
-    </tr>
-    </tbody>
+  <table mat-table [dataSource]="dataSource | search:searchingItem" matSort class="inventory-table">
+
+    <!-- Position Column -->
+    <ng-container [matColumnDef]="displayedColumns[0]">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
+      <td mat-cell *matCellDef="let element"> {{element.title.ru}} </td>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container [matColumnDef]="displayedColumns[1]">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Count </th>
+      <td mat-cell *matCellDef="let element"> {{element.count}} </td>
+    </ng-container>
+
+    <!-- Weight Column -->
+    <ng-container [matColumnDef]="displayedColumns[2]">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Weight </th>
+      <td mat-cell *matCellDef="let element"> {{element.weight * element.count}} </td>
+    </ng-container>
+
+    <!-- Symbol Column -->
+    <ng-container [matColumnDef]="displayedColumns[3]">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Cost </th>
+      <td mat-cell *matCellDef="let element"> {{element.cost * element.count}} </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
   </table>
+
   <button (click)="addItems()">Add items</button>
 </div>

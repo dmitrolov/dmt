@@ -6,6 +6,8 @@ import {RouterModule, Routes} from '@angular/router';
 import {StoreModule} from '@ngrx/store';
 import {characterReducer} from './store/characters/characters.reducer';
 import {StoreDevtoolsModule} from '@ngrx/store-devtools';
+import {MatSortModule, MatTableModule} from '@angular/material';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 import {AppComponent} from './app.component';
 import {PlayerCharacterGeneratorComponent} from './pages/player-character-generator/player-character-generator.component';
@@ -29,8 +31,7 @@ import {PickBackgroundComponent} from './pages/player-character-generator/compon
 import {MainInfoComponent} from './pages/player-character-generator/components/main-info/main-info.component';
 // tslint:disable-next-line:max-line-length
 import {CharacterGeneratorSelectComponent} from './pages/player-character-generator/components/character-generator-select/character-generator-select.component';
-import { WeaponPipe } from './pages/player-character-page/components/inventory/pipe/weapon.pipe';
-import { SearchPipe } from './pages/player-character-page/components/inventory/pipe/search.pipe';
+import {SearchPipe} from './pages/player-character-page/components/inventory/pipe/search.pipe';
 
 const appRoutes: Routes = [
   {
@@ -66,7 +67,6 @@ const appRoutes: Routes = [
     PickBackgroundComponent,
     MainInfoComponent,
     CharacterGeneratorSelectComponent,
-    WeaponPipe,
     SearchPipe
   ],
   imports: [
@@ -81,7 +81,10 @@ const appRoutes: Routes = [
     }),
     StoreDevtoolsModule.instrument({
       maxAge: 10
-    })
+    }),
+    BrowserAnimationsModule,
+    MatTableModule,
+    MatSortModule
   ],
   providers: [],
   bootstrap: [AppComponent]
