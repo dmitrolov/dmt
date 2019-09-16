@@ -15,6 +15,7 @@ export class InventoryComponent implements OnInit {
   private allItems: Item[] = EquipmentData;
   public equipment: {item: Item, count: number}[] = [];
   private currentUser: Character;
+  private searchingItem: string;
 
   constructor(
     private store: Store<StoreInterface>,
@@ -32,8 +33,6 @@ export class InventoryComponent implements OnInit {
       });
 
     });
-
-    // this.db.getItem();
   }
   addItems() {
     this.allItems.forEach((item) => {

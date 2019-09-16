@@ -10,25 +10,27 @@ import {StoreDevtoolsModule} from '@ngrx/store-devtools';
 import {AppComponent} from './app.component';
 import {PlayerCharacterGeneratorComponent} from './pages/player-character-generator/player-character-generator.component';
 import {PlayerCharacterPageComponent} from './pages/player-character-page/player-character-page.component';
-import { HeaderComponent } from './components/header/header.component';
-import { ImageComponent } from './components/image/image.component';
-import { InputComponent } from './components/input/input.component';
-import { SelectComponent } from './components/select/select.component';
-import { StatsComponent } from './pages/player-character-page/components/stats/stats.component';
-import { InventoryComponent } from './pages/player-character-page/components/inventory/inventory.component';
-import { DiaryComponent } from './pages/player-character-page/components/diary/diary.component';
-import { SkillsComponent } from './pages/player-character-page/components/skills/skills.component';
-import { GeneralInfoComponent } from './pages/player-character-page/components/stats/components/general-info/general-info.component';
-import { AttributesComponent } from './pages/player-character-page/components/stats/components/attributes/attributes.component';
-import { ProficiencyComponent } from './pages/player-character-page/components/stats/components/proficiency/proficiency.component';
-import { DescriptionComponent } from './pages/player-character-page/components/stats/components/description/description.component';
-import { MenuComponent } from './pages/player-character-page/components/menu/menu.component';
-import { PickRaceComponent } from './pages/player-character-generator/components/pick-race/pick-race.component';
-import { PickClassComponent } from './pages/player-character-generator/components/pick-class/pick-class.component';
-import { PickBackgroundComponent } from './pages/player-character-generator/components/pick-background/pick-background.component';
-import { MainInfoComponent } from './pages/player-character-generator/components/main-info/main-info.component';
+import {HeaderComponent} from './components/header/header.component';
+import {ImageComponent} from './components/image/image.component';
+import {InputComponent} from './components/input/input.component';
+import {SelectComponent} from './components/select/select.component';
+import {StatsComponent} from './pages/player-character-page/components/stats/stats.component';
+import {InventoryComponent} from './pages/player-character-page/components/inventory/inventory.component';
+import {DiaryComponent} from './pages/player-character-page/components/diary/diary.component';
+import {SkillsComponent} from './pages/player-character-page/components/skills/skills.component';
+import {GeneralInfoComponent} from './pages/player-character-page/components/stats/components/general-info/general-info.component';
+import {AttributesComponent} from './pages/player-character-page/components/stats/components/attributes/attributes.component';
+import {ProficiencyComponent} from './pages/player-character-page/components/stats/components/proficiency/proficiency.component';
+import {DescriptionComponent} from './pages/player-character-page/components/stats/components/description/description.component';
+import {MenuComponent} from './pages/player-character-page/components/menu/menu.component';
+import {PickRaceComponent} from './pages/player-character-generator/components/pick-race/pick-race.component';
+import {PickClassComponent} from './pages/player-character-generator/components/pick-class/pick-class.component';
+import {PickBackgroundComponent} from './pages/player-character-generator/components/pick-background/pick-background.component';
+import {MainInfoComponent} from './pages/player-character-generator/components/main-info/main-info.component';
 // tslint:disable-next-line:max-line-length
-import { CharacterGeneratorSelectComponent } from './pages/player-character-generator/components/character-generator-select/character-generator-select.component';
+import {CharacterGeneratorSelectComponent} from './pages/player-character-generator/components/character-generator-select/character-generator-select.component';
+import { WeaponPipe } from './pages/player-character-page/components/inventory/pipe/weapon.pipe';
+import { SearchPipe } from './pages/player-character-page/components/inventory/pipe/search.pipe';
 
 const appRoutes: Routes = [
   {
@@ -63,7 +65,9 @@ const appRoutes: Routes = [
     PickClassComponent,
     PickBackgroundComponent,
     MainInfoComponent,
-    CharacterGeneratorSelectComponent
+    CharacterGeneratorSelectComponent,
+    WeaponPipe,
+    SearchPipe
   ],
   imports: [
     BrowserModule,

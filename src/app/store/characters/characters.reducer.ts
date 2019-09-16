@@ -18,12 +18,12 @@ const defaultState: Character = {
       feats: [],
     },
     attributes: {
-      strength: 0,
-      dexterity: 0,
-      constitution: 0,
-      intelligence: 0,
-      wisdom: 0,
-      charisma: 0,
+      strength: 15,
+      dexterity: 14,
+      constitution: 13,
+      intelligence: 12,
+      wisdom: 10,
+      charisma: 8,
     },
     stats: {
       size: 'medium',
