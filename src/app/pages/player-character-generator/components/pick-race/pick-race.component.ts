@@ -23,20 +23,22 @@ export class PickRaceComponent implements OnInit {
   ngOnInit() {
   }
 
-  // onRaceInParentComponentSet(value: boolean) {
-  //   this.generatingCharacter.about.info.race = String(value);
-  // }
-  // onSubRaceInParentComponentSet(value: boolean) {
-  //   this.generatingCharacter.about.info.subRace = String(value);
-  // }
-  // getSubRaceList(value: string) {
-  //   this.racesList.map((race) => {
-  //     if (race.value === value) {
-  //       console.log(race.subRaces);
-  //       return race.subRaces;
-  //     }
-  //   });
-  // }
+  onRaceInParentComponentSet(value: boolean) {
+    this.generatingCharacter.about.info.race = String(value);
+  }
+  onSubRaceInParentComponentSet(value: boolean) {
+    this.generatingCharacter.about.info.subRace = String(value);
+  }
+  getSubRaceList(value: string): CharacterRace[] {
+    let subRaceList: CharacterRace[];
+    this.racesList.map((race) => {
+      if (race.value === value) {
+        subRaceList = race.subRaces;
+        return race.subRaces;
+      }
+    });
+    return subRaceList;
+  }
 
   saveRace() {
     racesList.map((race) => {

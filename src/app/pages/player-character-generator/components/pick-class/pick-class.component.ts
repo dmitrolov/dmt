@@ -22,7 +22,10 @@ export class PickClassComponent implements OnInit {
 
   ngOnInit() {
   }
-
+  onClassInParentComponentSet(value: boolean) {
+    this.generatingCharacter.about.info.classes[0].name = String(value);
+    this.generatingCharacter.about.info.classes[0].level = 1;
+  }
   saveClass() {
     this.classList.map((charClass) => {
       if (this.generatingCharacter.about.info.classes[0].name === charClass.value) {

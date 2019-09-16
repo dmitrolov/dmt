@@ -1,6 +1,6 @@
 <div>
-  <h3>Выберите рассу персонажа</h3>
-  <select id="race" [(ngModel)]="switchingAttribute" (ngModelChange)="onChange($event)">
+  <h3>{{title}}</h3>
+  <select id="race" [(ngModel)]="switchingAttribute" (ngModelChange)="onChange()">
     <option *ngFor="let item of options" value="{{item.value}}">{{item.title.ru}}</option>
   </select>
   <div [ngSwitch]="switchingAttribute">
