@@ -1,7 +1,20 @@
 <nav class="main-navigation-container">
-  <a class="main-navigation-container__link" routerLink="/player-character-generator" routerLinkActive="active">Char Gen</a>
-  <a class="main-navigation-container__link" routerLink="/player-character/Оксана_Гремми" routerLinkActive="active">Гремми</a>
-  <a class="main-navigation-container__link" routerLink="/player-character/Алексей_Рован" routerLinkActive="active">Рован</a>
-  <a class="main-navigation-container__link" routerLink="/player-character/Диана_Скарлет" routerLinkActive="active">Скарлет</a>
-  <a class="main-navigation-container__link" routerLink="/player-character/a_a" routerLinkActive="active">test</a>
+    <details class="menu-lvl-1">
+        <summary>Меню</summary>
+        <div class="link-container">
+          <a class="main-navigation-container__link" routerLink="/">Главная</a>
+          <a class="main-navigation-container__link" routerLink="/character-generator">Генератор персонажа</a>
+          <a class="main-navigation-container__link" routerLink="/sign-up">Регистрация</a>
+        </div>
+        <hr>
+        <details class="menu-lvl-2">
+          <summary>Персонажи</summary>
+          <div class="link-container">
+            <a class="main-navigation-container__link" routerLink="/character/Оксана_Гремми">Гремми</a>
+            <a class="main-navigation-container__link" routerLink="/character/Алексей_Рован">Рован</a>
+            <a class="main-navigation-container__link" routerLink="/character/Диана_Скарлет">Скарлет</a>
+            <a class="main-navigation-container__link" routerLink="/character/a_a">test</a>
+          </div>
+        </details>
+    </details>
 </nav>
