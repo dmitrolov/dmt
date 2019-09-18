@@ -45,7 +45,16 @@ export class SignUpComponent implements OnInit {
         password: form.controls.password.value,
         role: form.controls.role.value
       };
-      this.firebaseService.setPlayer(player);
+      this.firebaseService.createUserWithEmailAndPassword(player.email, player.password)
+        .subscribe(r1 => {
+          this.firebaseService.signInWithEmailAndPassword(player.email, player.password)
+            .subscribe(r2 => {
+              this.firebaseService.updateUserProfile(player.login)
+                .subscribe(r3 => {
+                  this.firebaseService.signOut();
+                });
+            });
+        });
     }
   }
 

@@ -2,6 +2,21 @@
     <details class="menu-lvl-1">
         <summary>Меню</summary>
       <hr>
+      <div [ngStyle]="{flexDirection: 'column', display: 'flex'}">
+        <div *ngIf="currentUser.signedIn" [className]="'currentUser'">
+          <img [alt]="'avatar'" [className]="'currentUser__image'" [src]="currentUser.imageUrl">
+          <span [className]="'currentUser__login'">{{currentUser.login}}</span>
+          <button (click)="firebaseService.signOut()">Sign-out</button>
+        </div>
+        <div *ngIf="!currentUser.signedIn" [className]="'currentUser'"
+             [ngStyle]="{flexDirection: 'column', display: 'flex'}">
+          <input [(ngModel)]="regUser.email" [className]="'currentUser__input'" placeholder="your email" type="text">
+          <input [(ngModel)]="regUser.password" [className]="'currentUser__input'" placeholder="your password"
+                 type="password">
+          <button (click)="signIn()">Sign-in</button>
+        </div>
+
+      </div>
         <div class="link-container">
           <a class="main-navigation-container__link" routerLink="/">Главная</a>
           <a class="main-navigation-container__link" routerLink="/character-generator">Генератор персонажа</a>
