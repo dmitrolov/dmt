@@ -1,5 +1,4 @@
-import { Pipe, PipeTransform } from '@angular/core';
-import {Item} from '../../../../../models/equipment/item/item.model';
+import {Pipe, PipeTransform} from '@angular/core';
 import {PlayerEquipmentView} from '../inventory.component';
 import {MatTableDataSource} from '@angular/material';
 

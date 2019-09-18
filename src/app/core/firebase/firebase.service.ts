@@ -1,13 +1,13 @@
 import {Injectable} from '@angular/core';
 // Firebase App (the core Firebase SDK) is always required and must be listed first
 import * as firebase from 'firebase/app';
-
 // // Add the Firebase products that you want to use
 // import 'firebase/auth';
 import 'firebase/firestore';
 import {Character} from '../../models/character/character.model';
 import {Observable} from 'rxjs';
 import {Item} from '../../models/equipment/item/item.model';
+import {Player} from '../../models/player/player.model';
 
 
 @Injectable({
@@ -27,6 +27,7 @@ export class FirebaseService {
   private collections = {
     playersCharactersUrl: 'playerCharacters',
     items: 'items',
+    players: 'players',
   };
 
   constructor() {
@@ -48,7 +49,7 @@ export class FirebaseService {
         console.error('Error writing document: ', error);
       });
   }
-  //
+
   getAllPlayersCharacters() {
     return new Observable(subscriber => {
       this.db
@@ -65,51 +66,7 @@ export class FirebaseService {
         });
     });
   }
-  //
-  // getPlayerCharacterById(id: string) {
-  //   return this.db
-  //     .collection(this.collections.playersCharactersUrl)
-  //     .doc(id)
-  //     // .where('gettable', '==', true)
-  //     .get()
-  //     .then((character) => {
-  //       if (character.exists) {
-  //         console.log('Document data:', character.data());
-  //         return character.data();
-  //       } else {
-  //         // doc.data() will be undefined in this case
-  //         console.log('No such document!');
-  //       }
-  //     })
-  //     .catch((error) => {
-  //       console.log('Error getting documents: ', error);
-  //     });
-  // }
-  //
-  // subscribeOnDBChanges() {
-  //   return this.db
-  //     .collection(this.collections.playersCharactersUrl)
-  //     .onSnapshot((characters) => {
-  //       characters.forEach((character) => {
-  //         console.log(character.id, ' => ', character.data(), new Date().getTime());
-  //       });
-  //     });
-  // }
-  //
-  // subscribeOnCharacterChanges(id: string) {
-  //   return this.db
-  //     .collection(this.collections.playersCharactersUrl)
-  //     .doc(id);
-  // }
-  //
-  // subscribeOnCharacterChangesTest(id: string) {
-  //   return this.db
-  //     .collection(this.collections.playersCharactersUrl)
-  //     .doc(id)
-  //     .onSnapshot((character) => {
-  //       return character.data().stats;
-  //     });
-  // }
+
   onCharacterChanges(id: string) {
     return new Observable(subscriber => {
       this.db
@@ -120,6 +77,7 @@ export class FirebaseService {
         });
     });
   }
+
   setItem(item: Item) {
     this.db
       .collection(this.collections.items)
@@ -132,6 +90,7 @@ export class FirebaseService {
         console.error('Error writing item: ', error);
       });
   }
+
   getItem(id: string) {
     return new Observable(subscriber => {
       this.db
@@ -142,5 +101,18 @@ export class FirebaseService {
           subscriber.next(item.data());
         });
     });
+  }
+
+  setPlayer(player: Player) {
+    this.db
+      .collection(this.collections.players)
+      .doc(player.login)
+      .set(player)
+      .then(() => {
+        console.log('Player successfully written!');
+      })
+      .catch((error) => {
+        console.error('Error writing player: ', error);
+      });
   }
 }
