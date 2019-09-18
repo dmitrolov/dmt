@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {FirebaseService} from '../../core/firebase/firebase.service';
+import {Character} from '../../models/character/character.model';
 
 @Component({
   selector: 'app-header',
@@ -17,6 +18,7 @@ export class HeaderComponent implements OnInit {
     email: '',
     password: '',
   };
+  public allCharacters: { id: string, character: Character }[] = [];
 
   constructor(private firebaseService: FirebaseService) {
   }
@@ -29,6 +31,11 @@ export class HeaderComponent implements OnInit {
       } else {
         this.currentUser = this.initialUser;
       }
+    });
+
+    this.firebaseService.getAllPlayersCharacters().subscribe(({id, character}) => {
+      console.log(id, character);
+      this.allCharacters.push({id, character});
     });
   }
 

@@ -127,14 +127,10 @@ export class FirebaseService {
       this.db
         .collection(this.collections.playersCharactersUrl)
         // .where('gettable', '==', true)
-        .get()
-        .then((characters) => {
+        .onSnapshot((characters) => {
           characters.forEach((character) => {
             subscriber.next({id: character.id, character: character.data()});
           });
-        })
-        .catch((error) => {
-          console.log('Error getting documents: ', error);
         });
     });
   }

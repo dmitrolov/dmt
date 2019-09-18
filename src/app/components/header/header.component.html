@@ -25,11 +25,13 @@
         <hr>
         <details class="menu-lvl-2">
           <summary>Персонажи</summary>
-          <div class="link-container">
-            <a class="main-navigation-container__link" routerLink="/character/Оксана_Гремми">Гремми</a>
-            <a class="main-navigation-container__link" routerLink="/character/Алексей_Рован">Рован</a>
-            <a class="main-navigation-container__link" routerLink="/character/Диана_Скарлет">Скарлет</a>
-            <a class="main-navigation-container__link" routerLink="/character/a_a">test</a>
+          <div [ngStyle]="{display: 'flex', flexDirection: 'column'}">
+            <a
+              *ngFor="let character of allCharacters"
+              [className]="'main-navigation-container__link'"
+              [routerLink]="'/character/' + character.id">
+              {{character.id}}
+            </a>
           </div>
         </details>
     </details>

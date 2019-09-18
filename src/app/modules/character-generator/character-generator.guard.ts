@@ -5,7 +5,6 @@ import {FirebaseService} from '../../core/firebase/firebase.service';
 export class CharacterGeneratorGuard implements CanActivate {
   constructor(private firebaseService: FirebaseService) {
   }
-
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | boolean {
     const loggedIn = !!this.firebaseService.getCurrentUser();
     if (!loggedIn) {
