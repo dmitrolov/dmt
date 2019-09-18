@@ -9,6 +9,7 @@ import {characterReducer} from './store/characters/characters.reducer';
 
 import {AppComponent} from './app.component';
 import {HeaderComponent} from './components/header/header.component';
+import {CharacterGeneratorGuard} from './modules/character-generator/character-generator.guard';
 
 
 @NgModule({
@@ -26,7 +27,7 @@ import {HeaderComponent} from './components/header/header.component';
     }),
     BrowserAnimationsModule,
   ],
-  providers: [],
+  providers: [CharacterGeneratorGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
