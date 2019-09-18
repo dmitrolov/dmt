@@ -8,21 +8,13 @@ import {Character} from '../../models/character/character.model';
 import {Observable} from 'rxjs';
 import {Item} from '../../models/equipment/item/item.model';
 import {Player} from '../../models/player/player.model';
+import {environment} from '../../../environments/environment';
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class FirebaseService {
-  private firebaseConfig = {
-    apiKey: 'AIzaSyCBJLGUwm3Gudef3OmMpTr4_kuAKojdHKI',
-    authDomain: 'dnd-master-tools.firebaseapp.com',
-    databaseURL: 'https://dnd-master-tools.firebaseio.com',
-    projectId: 'dnd-master-tools',
-    storageBucket: '',
-    messagingSenderId: '338033505662',
-    appId: '1:338033505662:web:ded866bbf17722c7'
-  };
   private db;
   private collections = {
     playersCharactersUrl: 'playerCharacters',
@@ -31,7 +23,7 @@ export class FirebaseService {
   };
 
   constructor() {
-    firebase.initializeApp(this.firebaseConfig);
+    firebase.initializeApp(environment.firebaseConfig);
     this.db = firebase.firestore();
   }
 
