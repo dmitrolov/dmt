@@ -20,7 +20,7 @@ export class HeaderComponent implements OnInit {
   };
   public allCharacters: { id: string, character: Character }[] = [];
 
-  constructor(private firebaseService: FirebaseService) {
+  constructor(public firebaseService: FirebaseService) {
   }
 
   ngOnInit() {
