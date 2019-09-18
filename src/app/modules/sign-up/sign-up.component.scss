@@ -1,0 +1,28 @@
+.registration-form {
+  display: flex;
+  flex-direction: column;
+
+  padding: 1em;
+
+  &__item {
+    display: flex;
+    flex-direction: column;
+
+    margin-bottom: 1em;
+    text-align: center;
+  }
+
+  &__label {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+.ng-invalid.ng-touched:not(form) {
+  border: 1px solid red
+}
+
+.invalid-feedback {
+  font-size: 0.7em;
+  color: red;
+}

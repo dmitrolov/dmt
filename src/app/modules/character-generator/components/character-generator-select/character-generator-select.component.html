@@ -1,0 +1,13 @@
+<div>
+  <h3>{{title}}</h3>
+  <select [id]="'race'" [(ngModel)]="switchingAttribute" (ngModelChange)="onChange()">
+    <option *ngFor="let item of options" [value]="item.value">{{item.title.ru}}</option>
+  </select>
+  <div [ngSwitch]="switchingAttribute">
+    <div *ngFor="let item of options">
+      <div *ngSwitchCase="item.value">
+        <ng-content></ng-content>
+      </div>
+    </div>
+  </div>
+</div>

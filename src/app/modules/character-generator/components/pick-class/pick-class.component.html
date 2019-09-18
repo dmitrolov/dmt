@@ -1,0 +1,9 @@
+<div>
+  <app-character-generator-select
+    (outputValue)="onClassInParentComponentSet($event)"
+    [switchingAttribute]="generatingCharacter.about.info.race"
+    [options]="classList"
+    [title]="'Выберите класс персонажа'"
+  ></app-character-generator-select>
+  <button (click)="saveClass()">Save class</button>
+</div>

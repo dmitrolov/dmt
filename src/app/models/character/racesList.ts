@@ -1,15 +1,13 @@
 import {CharacterRace} from './about/character.race.model';
 
+type boundaryValues = {
+  min: number;
+  max: number;
+};
 interface RacesList extends CharacterRace {
   generatorData: {
-    height: {
-      min: number;
-      max: number;
-    };
-    weight: {
-      min: number;
-      max: number;
-    };
+    height: boundaryValues;
+    weight: boundaryValues;
     ageModifier: number;
     names: {
       male: DomLocalization;

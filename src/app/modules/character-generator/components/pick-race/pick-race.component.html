@@ -1,0 +1,16 @@
+<div>
+  <app-character-generator-select
+    (outputValue)="onRaceInParentComponentSet($event)"
+    [switchingAttribute]="generatingCharacter.about.info.race"
+    [options]="racesList"
+    [title]="'Выберите рассу персонажа'"
+  >
+    <app-character-generator-select
+      (outputValue)="onSubRaceInParentComponentSet($event)"
+      [switchingAttribute]="generatingCharacter.about.info.subRace"
+      [options]="getSubRaceList(generatingCharacter.about.info.race)"
+      [title]="'Выберите подрассу персонажа'"
+    ></app-character-generator-select>
+  </app-character-generator-select>
+  <button (click)="saveRace()">Save race</button>
+</div>
