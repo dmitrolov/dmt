@@ -6,6 +6,7 @@
     "start": "ng serve",
     "open": "ng serve -o",
     "build": "ng build",
+    "git-build": "ng build --prod --output-path docs --base-href /dmt/",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"

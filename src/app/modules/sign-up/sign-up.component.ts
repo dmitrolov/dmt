@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {MustMatch} from 'src/app/utils/must-match.validator';
+import {MustMatch} from '../../utils/must-match.validator';
 import {Player} from '../../models/player/player.model';
 import {FirebaseService} from '../../core/firebase/firebase.service';
 
