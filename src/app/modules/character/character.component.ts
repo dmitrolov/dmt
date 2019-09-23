@@ -4,6 +4,7 @@ import {ActivatedRoute} from '@angular/router';
 import * as CharacterActions from '../../store/characters/characters.actions';
 import {Store} from '@ngrx/store';
 import {Character} from '../../models/character/character.model';
+import {switchMap} from 'rxjs/operators';
 
 @Component({
   selector: 'app-character',
@@ -33,14 +34,17 @@ export class CharacterComponent implements OnInit {
 
   ngOnInit() {
     this.route.url
-      .subscribe((url) => {
-        const currentUserId = url[url.length - 1].path;
-        this.firebaseService
-          .onCharacterChanges(currentUserId)
-          .subscribe((item: Character) => {
-            this.currentUser = item;
-            this.store.dispatch(new CharacterActions.SetCharacter(item));
-          });
+      .pipe(
+        switchMap((url) => {
+          const currentUserId = url[url.length - 1].path;
+
+          return this.firebaseService
+            .onCharacterChanges(currentUserId);
+        }),
+      )
+      .subscribe((item: Character) => {
+        this.currentUser = item;
+        this.store.dispatch(new CharacterActions.SetCharacter(item));
       });
   }
 }

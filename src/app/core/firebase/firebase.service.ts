@@ -6,7 +6,7 @@ import 'firebase/auth';
 import 'firebase/firestore';
 
 import {Character} from '../../models/character/character.model';
-import {Observable} from 'rxjs';
+import {defer, Observable} from 'rxjs';
 import {Item} from '../../models/equipment/item/item.model';
 import {Player} from '../../models/player/player.model';
 import {environment} from '../../../environments/environment';
@@ -30,14 +30,19 @@ export class FirebaseService {
 
   // AUTH
   createUserWithEmailAndPassword(email, password) {
+    return defer(() => firebase.auth()
+      .createUserWithEmailAndPassword(email, password));
+
     return new Observable(subscriber => {
       firebase.auth()
         .createUserWithEmailAndPassword(email, password)
         .then(response => {
           subscriber.next(response);
+          subscriber.complete();
         })
         .catch((error) => {
           console.log('[FIREBASE REGISTRATION ERROR]', error.code, error.message);
+          subscriber.error();
         });
     });
   }

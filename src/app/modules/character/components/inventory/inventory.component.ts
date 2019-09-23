@@ -5,6 +5,8 @@ import {Item} from '../../../../models/equipment/item/item.model';
 import {Character} from '../../../../models/character/character.model';
 import {FirebaseService} from '../../../../core/firebase/firebase.service';
 import {MatSort, MatTableDataSource} from '@angular/material';
+import {from, merge} from 'rxjs';
+import {tap} from 'rxjs/operators';
 
 export interface PlayerEquipmentView extends Item {
   count: number;
@@ -36,6 +38,19 @@ export class InventoryComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    merge(
+      this.currentUser.equipment.map((characterItem) =>
+        this.db.getItem(characterItem.value)
+          .pipe(
+            tap((element: Item) => {
+              equipmentView.push({...element, count: characterItem.count, name: element.title.ru.toString()});
+              this.dataSource.sort = this.sort;
+            })
+          )
+      )
+    )
+      .subscribe()
+
     this.currentUser.equipment.forEach((characterItem) => {
       this.db.getItem(characterItem.value).subscribe((element: Item) => {
         equipmentView.push({...element, count: characterItem.count, name: element.title.ru.toString()});

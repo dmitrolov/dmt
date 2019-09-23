@@ -29,7 +29,7 @@
             <a
               *ngFor="let character of allCharacters"
               [className]="'main-navigation-container__link'"
-              [routerLink]="'/character/' + character.id">
+              [routerLink]="['character', character.id]">
               {{character.id}}
             </a>
           </div>

@@ -3,6 +3,7 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {MustMatch} from 'src/app/utils/must-match.validator';
 import {Player} from '../../models/player/player.model';
 import {FirebaseService} from '../../core/firebase/firebase.service';
+import {switchMap} from 'rxjs/operators';
 
 @Component({
   selector: 'app-sign-up',
@@ -45,15 +46,14 @@ export class SignUpComponent implements OnInit {
         password: form.controls.password.value,
         role: form.controls.role.value
       };
+
       this.firebaseService.createUserWithEmailAndPassword(player.email, player.password)
+        .pipe(
+          switchMap((r1) => this.firebaseService.signInWithEmailAndPassword(player.email, player.password)),
+          switchMap((r2) => this.firebaseService.updateUserProfile(player.login))
+        )
         .subscribe(r1 => {
-          this.firebaseService.signInWithEmailAndPassword(player.email, player.password)
-            .subscribe(r2 => {
-              this.firebaseService.updateUserProfile(player.login)
-                .subscribe(r3 => {
-                  this.firebaseService.signOut();
-                });
-            });
+          this.firebaseService.signOut();
         });
     }
   }
