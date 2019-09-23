@@ -3,15 +3,12 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "serve -s dist",
+    "start": "ng serve",
     "open": "ng serve -o",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e",
-    "postinstall": "ng build --aot --prod",
-    "heroku-postbuild": "ng build --prod",
-    "git": "git add . && git commit -m fastcommit && git push origin dev"
+    "e2e": "ng e2e"
   },
   "private": true,
   "dependencies": {
