@@ -1,5 +1,5 @@
 import {Item} from './item.model';
-import {Damage} from '../../gameMechanics/damage.model';
+import {Damage} from '../../mechanics/damage.model';
 
 export interface Weapon extends Item {
   attack: {

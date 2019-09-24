@@ -2,7 +2,7 @@ import {Item} from './item/item.model';
 
 export const EquipmentData: Item[] = [
   {
-    value: 'greatAxe',
+    id: 'greatAxe',
     title: {
       ru: 'Секира',
       en: 'Great Axe',
@@ -17,7 +17,7 @@ export const EquipmentData: Item[] = [
     }
   },
   {
-    value: 'handAxe',
+    id: 'handAxe',
     title: {
       ru: 'Ручной топор',
       en: 'Hand Axe',
@@ -33,7 +33,7 @@ export const EquipmentData: Item[] = [
 
   },
   {
-    value: 'explorersPack',
+    id: 'explorersPack',
     title: {
       ru: 'Набор путешественника',
       en: 'Explorer\'s Pack'
@@ -51,7 +51,7 @@ export const EquipmentData: Item[] = [
     }
   },
   {
-    value: 'javelin',
+    id: 'javelin',
     title: {
       ru: 'Метательное копьё',
       en: 'Javelin',

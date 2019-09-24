@@ -1,9 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {Store} from '@ngrx/store';
 import {StoreInterface} from '../../../../store/store.model';
-import {racesList} from '../../../../models/character/racesList';
-import {CharacterRace} from '../../../../models/character/about/character.race.model';
 import {Character} from '../../../../models/character/character.model';
+import {CharacterRace} from '../../../../models/mechanics/character-race.model';
+import {characterRaceData} from '../../../../models/mechanics/character-race.data';
 
 @Component({
   selector: 'app-pick-race',
@@ -11,7 +11,7 @@ import {Character} from '../../../../models/character/character.model';
   styleUrls: ['./pick-race.component.scss']
 })
 export class PickRaceComponent implements OnInit {
-  public racesList = racesList;
+  public racesList = characterRaceData;
   public generatingCharacter: Character;
 
   constructor(private store: Store<StoreInterface>) {
@@ -32,7 +32,7 @@ export class PickRaceComponent implements OnInit {
   getSubRaceList(value: string): CharacterRace[] {
     let subRaceList: CharacterRace[];
     this.racesList.map((race) => {
-      if (race.value === value) {
+      if (race.id === value) {
         subRaceList = race.subRaces;
         return race.subRaces;
       }
@@ -41,16 +41,16 @@ export class PickRaceComponent implements OnInit {
   }
 
   saveRace() {
-    racesList.map((race) => {
-      if (race.value === this.generatingCharacter.about.info.race) {
+    this.racesList.map((race) => {
+      if (race.id === this.generatingCharacter.about.info.race) {
         console.log('Character saved');
-        this.generatingCharacter.about.description.imageUrl = race.generatorData.image;
+        this.generatingCharacter.about.description.imageUrl = race.raceGenerator.image;
         console.log('this.generatingCharacter.about.description.imageUrl',
           this.generatingCharacter.about.description.imageUrl,
-          'race.generatorData.image', race.generatorData.image);
+          'race.generatorData.image', race.raceGenerator.image);
         this.setRace(this.generatingCharacter, race);
         race.subRaces.map((subRace) => {
-          if (subRace.value === this.generatingCharacter.about.info.subRace) {
+          if (subRace.id === this.generatingCharacter.about.info.subRace) {
             this.setRace(this.generatingCharacter, subRace);
           }
         });
@@ -96,7 +96,7 @@ export class PickRaceComponent implements OnInit {
   setProficiency(character: Character, race: CharacterRace) {
     const proficiencyAttributes: string[] = [];
     // tslint:disable-next-line:forin
-    for (const proficiencyKey in race.proficiency) {
+    for (const proficiencyKey of Object.keys(race.proficiency)) {
       proficiencyAttributes.push(proficiencyKey);
     }
     proficiencyAttributes.forEach((attribute) => {

@@ -3,5 +3,5 @@ export interface Item extends DomItem {
   weight: number;               // Вес предмета в фунтах
   cost: number;                 // Стоимость предмета в самых дешевых монетах (прим. медные)
   rarity: number;               // Редкость предмета
-  description: DomLocalization; // Описание предмета
+  description: Localization;    // Описание предмета
 }

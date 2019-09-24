@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {FirebaseService} from '../../core/firebase/firebase.service';
 import {Character} from '../../models/character/character.model';
+import {error} from 'util';
+import {User} from '../../models/user/user.model';
 
 @Component({
   selector: 'app-header',
@@ -14,7 +16,7 @@ export class HeaderComponent implements OnInit {
     signedIn: false,
   };
   public currentUser = {...this.initialUser};
-  public regUser = {
+  public regUserForm = {
     email: '',
     password: '',
   };
@@ -24,27 +26,37 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.firebaseService.onAuthStateChanged().subscribe(({displayName, photoURL, signedIn}) => {
-      console.log('[HEADER USER]', displayName);
-      if (signedIn) {
-        this.currentUser = {login: displayName, imageUrl: photoURL, signedIn};
+    this.firebaseService.onUserChanged().subscribe((user: User) => {
+      if (user) {
+        this.currentUser.login = user.login;
+        this.currentUser.imageUrl = user.imageUrl;
+        this.currentUser.signedIn = true;
       } else {
         this.currentUser = this.initialUser;
       }
     });
-
-    this.firebaseService.getAllPlayersCharacters().subscribe(({id, character}) => {
-      console.log(id, character);
-      this.allCharacters.push({id, character});
-    });
   }
 
   signIn() {
-    console.log(this.regUser.email, this.regUser.password);
-    this.firebaseService.signInWithEmailAndPassword(this.regUser.email, this.regUser.password).subscribe(response => {
-      console.log('response', response);
-    });
-    console.log('done');
+    console.log(this.regUserForm.email, this.regUserForm.password);
+    this.firebaseService.signInUser(this.regUserForm.email, this.regUserForm.password)
+      .catch(e => {
+        console.log('[ERROR IN USER SIGN IN]', e);
+      })
+      .finally(() => {
+        console.log('[USER SIGNED IN SUCCESSFULLY]');
+      });
+  }
+
+  getCurrentUser() {
+    console.log(this.firebaseService.getCurrentUser());
+  }
+  signOutCurrentUser() {
+    this.currentUser = this.initialUser;
+    this.firebaseService.signOutCurrentUser()
+      .finally(() => {
+        console.log('[USER SIGNED OUT]');
+      });
   }
 
 }

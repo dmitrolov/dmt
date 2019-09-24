@@ -37,7 +37,7 @@ export class InventoryComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.currentUser.equipment.forEach((characterItem) => {
-      this.db.getItem(characterItem.value).subscribe((element: Item) => {
+      this.db.getItem(characterItem.id).subscribe((element: Item) => {
         equipmentView.push({...element, count: characterItem.count, name: element.title.ru.toString()});
         this.dataSource.sort = this.sort;
       });

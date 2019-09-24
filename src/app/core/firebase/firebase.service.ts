@@ -8,94 +8,74 @@ import 'firebase/firestore';
 import {Character} from '../../models/character/character.model';
 import {Observable} from 'rxjs';
 import {Item} from '../../models/equipment/item/item.model';
-import {Player} from '../../models/player/player.model';
 import {environment} from '../../../environments/environment';
+import {User} from '../../models/user/user.model';
 
 
 @Injectable({
   providedIn: 'root'
 })
+
 export class FirebaseService {
-  private db;
   private collections = {
-    playersCharactersUrl: 'playerCharacters',
+    users: 'users',
+    adventures: 'adventures',
     items: 'items',
-    players: 'players',
+
+    playersCharactersUrl: 'playerCharacters',
   };
 
   constructor() {
     firebase.initializeApp(environment.firebaseConfig);
-    this.db = firebase.firestore();
   }
 
-  // AUTH
-  createUserWithEmailAndPassword(email, password) {
-    return new Observable(subscriber => {
-      firebase.auth()
-        .createUserWithEmailAndPassword(email, password)
-        .then(response => {
-          subscriber.next(response);
-        })
-        .catch((error) => {
-          console.log('[FIREBASE REGISTRATION ERROR]', error.code, error.message);
-        });
-    });
+  signUpUser(email, password) {
+    return firebase.auth()
+      .createUserWithEmailAndPassword(email, password);
   }
 
-  signInWithEmailAndPassword(email, password) {
-    return new Observable(subscriber => {
-      firebase.auth()
-        .signInWithEmailAndPassword(email, password)
-        .then(response => {
-          console.log('User signed in');
-          subscriber.next(response);
-        })
-        .catch((error) => {
-          console.log('AUTH ERROR', error.code, error.message);
-        });
-    });
+  setUser(user: User) {
+    return firebase.firestore()
+      .collection(this.collections.users)
+      .doc(user.email)
+      .set(user);
   }
 
-  updateUserProfile(login: string, imageUrl: string = 'https://icon-library.net/images/default-user-icon/default-user-icon-8.jpg') {
-    return new Observable(subscriber => {
-      firebase.auth().currentUser
-        .updateProfile({
-          displayName: login,
-          photoURL: imageUrl,
-        })
-        .then(response => {
-          subscriber.next(response);
-        })
-        .catch((error) => {
-          console.log('[FIREBASE USER PROFILE UPDATE ERROR]', error.code, error.message);
-        });
-    });
+  signInUser(email, password) {
+    return firebase.auth()
+      .signInWithEmailAndPassword(email, password);
   }
 
-  onAuthStateChanged() {
-    return new Observable(subscriber => {
-      firebase.auth().onAuthStateChanged((user) => {
-        if (user) {
-          subscriber.next({
-            displayName: this.getCurrentUser().displayName,
-            photoURL: this.getCurrentUser().photoURL,
-            signedIn: true,
-          });
+  onUserChanged() {
+    return new Observable<User>(subscriber => {
+      firebase.auth().onAuthStateChanged(authUser => {
+        if (authUser) {
+          this.getUser(authUser.email)
+            .then(dbUser => {
+              // @ts-ignore
+              const currentUser: User = dbUser.data();
+              subscriber.next(currentUser);
+            });
         } else {
-          // No user is signed in.
-          console.log('User is not signed in');
-          subscriber.next({
-            displayName: '%Username%',
-            photoURL: 'https://icon-library.net/images/default-user-icon/default-user-icon-8.jpg',
-            signedIn: false,
-          });
+          subscriber.next(null);
         }
       });
     });
   }
 
+  getUser(email: string) {
+    return firebase.firestore()
+      .collection(this.collections.users)
+      .doc(email)
+      .get();
+  }
+
   getCurrentUser() {
     return firebase.auth().currentUser;
+  }
+
+  signOutCurrentUser() {
+    return firebase.auth().signOut();
   }
 
   signOut() {
@@ -108,7 +88,7 @@ export class FirebaseService {
 
   // DATABASE
   setPlayerCharacter(character: Character) {
-    return this.db
+    return firebase.firestore()
       .collection(this.collections.playersCharactersUrl)
       .doc(`${character.about.info.playerName}_${character.about.info.characterName}`)
       .set({
@@ -124,7 +104,7 @@ export class FirebaseService {
 
   getAllPlayersCharacters() {
     return new Observable(subscriber => {
-      this.db
+      firebase.firestore()
         .collection(this.collections.playersCharactersUrl)
         // .where('gettable', '==', true)
         .onSnapshot((characters) => {
@@ -137,7 +117,7 @@ export class FirebaseService {
 
   onCharacterChanges(id: string) {
     return new Observable(subscriber => {
-      this.db
+      firebase.firestore()
         .collection(this.collections.playersCharactersUrl)
         .doc(id)
         .onSnapshot((character) => {
@@ -147,9 +127,9 @@ export class FirebaseService {
   }
 
   setItem(item: Item) {
-    this.db
+    firebase.firestore()
       .collection(this.collections.items)
-      .doc(item.value)
+      .doc(item.id)
       .set(item)
       .then(() => {
         console.log('Item successfully written!');
@@ -161,7 +141,7 @@ export class FirebaseService {
 
   getItem(id: string) {
     return new Observable(subscriber => {
-      this.db
+      firebase.firestore()
         .collection('items')
         .doc(id)
         .get()
@@ -169,18 +149,5 @@ export class FirebaseService {
           subscriber.next(item.data());
         });
     });
-  }
-
-  setPlayer(player: Player) {
-    this.db
-      .collection(this.collections.players)
-      .doc(player.login)
-      .set(player)
-      .then(() => {
-        console.log('Player successfully written!');
-      })
-      .catch((error) => {
-        console.error('Error writing player: ', error);
-      });
   }
 }

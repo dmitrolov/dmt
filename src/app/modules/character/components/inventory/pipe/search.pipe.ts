@@ -15,7 +15,7 @@ export class SearchPipe implements PipeTransform {
       console.log('[item]', item);
       return item.title.ru.toString().toLowerCase().includes(searchString.toLowerCase())
         || item.title.en.toString().toLowerCase().includes(searchString.toLowerCase())
-        || item.value.toString().toLowerCase().includes(searchString.toLowerCase());
+        || item.id.toString().toLowerCase().includes(searchString.toLowerCase());
     });
   }
 

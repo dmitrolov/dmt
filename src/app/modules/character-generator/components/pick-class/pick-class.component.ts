@@ -1,9 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {Store} from '@ngrx/store';
 import {StoreInterface} from '../../../../store/store.model';
-import {CharacterClassesList} from '../../../../models/character/about/character.class.model';
-import {CharacterProficiency} from '../../../../models/character/about/components/character.proficiency.model';
 import {Character} from '../../../../models/character/character.model';
+import {CharacterProficiency} from '../../../../models/character/about/components/character-proficiency.model';
+import {CharacterClassData} from '../../../../models/mechanics/character-class.data';
 
 @Component({
   selector: 'app-pick-class',
@@ -11,7 +11,7 @@ import {Character} from '../../../../models/character/character.model';
   styleUrls: ['./pick-class.component.scss']
 })
 export class PickClassComponent implements OnInit {
-  public classList = CharacterClassesList;
+  public classList = CharacterClassData;
   public generatingCharacter: Character;
 
   constructor(private store: Store<StoreInterface>) {
@@ -28,7 +28,7 @@ export class PickClassComponent implements OnInit {
   }
   saveClass() {
     this.classList.map((charClass) => {
-      if (this.generatingCharacter.about.info.classes[0].name === charClass.value) {
+      if (this.generatingCharacter.about.info.classes[0].name === charClass.id) {
         console.log('class saved');
         // Save function
         this.setProficiency(this.generatingCharacter, charClass.proficiency);
@@ -47,8 +47,7 @@ export class PickClassComponent implements OnInit {
 
   setProficiency(character: Character, proficiency: CharacterProficiency) {
     const proficiencyAttributes: string[] = [];
-    // tslint:disable-next-line:forin
-    for (const proficiencyKey in proficiency) {
+    for (const proficiencyKey of Object.keys(proficiency)) {
       proficiencyAttributes.push(proficiencyKey);
     }
     proficiencyAttributes.forEach((attribute) => {

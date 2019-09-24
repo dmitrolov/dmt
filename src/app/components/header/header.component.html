@@ -6,12 +6,12 @@
         <div *ngIf="currentUser.signedIn" [className]="'currentUser'">
           <img [alt]="'avatar'" [className]="'currentUser__image'" [src]="currentUser.imageUrl">
           <span [className]="'currentUser__login'">{{currentUser.login}}</span>
-          <button (click)="firebaseService.signOut()">Sign-out</button>
+          <button (click)="signOutCurrentUser()">Sign-out</button>
         </div>
         <div *ngIf="!currentUser.signedIn" [className]="'currentUser'"
              [ngStyle]="{flexDirection: 'column', display: 'flex'}">
-          <input [(ngModel)]="regUser.email" [className]="'currentUser__input'" placeholder="your email" type="text">
-          <input [(ngModel)]="regUser.password" [className]="'currentUser__input'" placeholder="your password"
+          <input [(ngModel)]="regUserForm.email" [className]="'currentUser__input'" placeholder="your email" type="text">
+          <input [(ngModel)]="regUserForm.password" [className]="'currentUser__input'" placeholder="your password"
                  type="password">
           <button (click)="signIn()">Sign-in</button>
         </div>
@@ -34,5 +34,8 @@
             </a>
           </div>
         </details>
+      <button (click)="getCurrentUser()">Get user</button>
+      <button (click)="signOutCurrentUser()">Sign out</button>
     </details>
+
 </nav>

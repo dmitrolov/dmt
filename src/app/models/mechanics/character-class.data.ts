@@ -1,16 +1,8 @@
-import {CharacterProficiency} from './components/character.proficiency.model';
-import {CharacterEffects} from './components/character.effects.model';
-import {CharacterEquipment} from '../equipment/character.equipment.model';
+import {CharacterClass} from './character-class.model';
 
-export interface CharacterClass extends DomItem {
-  proficiency: CharacterProficiency;
-  effects: CharacterEffects;
-  equipment: CharacterEquipment[];
-}
-
-export const CharacterClassesList: CharacterClass[] = [
+export const CharacterClassData: CharacterClass[] = [
   {
-    value: 'barbarian',
+    id: 'barbarian',
     title: {
       en: 'Barbarian',
       ru: 'Варвар',
@@ -29,21 +21,21 @@ export const CharacterClassesList: CharacterClass[] = [
     },
     equipment: [
       {
-        value: 'greatAxe',
+        id: 'greatAxe',
         count: 1,
       },
       {
-        value: 'handAxe',
+        id: 'handAxe',
         count: 2,
       },
       {
-        value: 'explorersPack',
+        id: 'explorersPack',
         count: 1,
       },
       {
-        value: 'javelin',
+        id: 'javelin',
         count: 4,
       },
     ],
   }
-];
+]
