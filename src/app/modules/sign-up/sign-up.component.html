@@ -7,9 +7,9 @@
       <span>Your login</span>
       <input formControlName="login" placeholder="Your login" type="text">
     </label>
-    <div *ngIf="(f.login.dirty || f.login.touched) && f.login.errors"
+    <div *ngIf="(form.login.dirty || form.login.touched) && form.login.errors"
          class="invalid-feedback">
-      <div *ngIf="f.login.errors.required">Login is required</div>
+      <div *ngIf="form.login.errors.required">Login is required</div>
     </div>
   </div>
   <div [className]="'registration-form__item'">
@@ -17,10 +17,10 @@
       <span>Your email</span>
       <input formControlName="email" placeholder="Your email" type="text">
     </label>
-    <div *ngIf="(f.email.dirty || f.email.touched) && f.email.errors"
+    <div *ngIf="(form.email.dirty || form.email.touched) && form.email.errors"
          class="invalid-feedback">
-      <div *ngIf="f.email.errors.required">Email is required</div>
-      <div *ngIf="f.email.errors.email">Email must be a valid email address</div>
+      <div *ngIf="form.email.errors.required">Email is required</div>
+      <div *ngIf="form.email.errors.email">Email must be a valid email address</div>
     </div>
   </div>
   <div [className]="'registration-form__item'">
@@ -28,10 +28,10 @@
       <span>Your password</span>
       <input formControlName="password" placeholder="Your password" type="password">
     </label>
-    <div *ngIf="(f.password.dirty || f.password.touched) && f.password.errors"
+    <div *ngIf="(form.password.dirty || form.password.touched) && form.password.errors"
          class="invalid-feedback">
-      <div *ngIf="f.password.errors.required">Password is required</div>
-      <div *ngIf="f.password.errors.minlength">Password must be at least 6 characters</div>
+      <div *ngIf="form.password.errors.required">Password is required</div>
+      <div *ngIf="form.password.errors.minlength">Password must be at least 6 characters</div>
     </div>
   </div>
   <div [className]="'registration-form__item'">
@@ -39,10 +39,10 @@
       <span>Confirm password</span>
       <input formControlName="passwordConfirm" placeholder="Confirm password" type="password">
     </label>
-    <div *ngIf="(f.passwordConfirm.dirty || f.passwordConfirm.touched) && f.passwordConfirm.errors"
+    <div *ngIf="(form.passwordConfirm.dirty || form.passwordConfirm.touched) && form.passwordConfirm.errors"
          class="invalid-feedback">
-      <div *ngIf="f.passwordConfirm.errors.required">Confirm Password is required</div>
-      <div *ngIf="f.passwordConfirm.errors.mustMatch">Passwords must match</div>
+      <div *ngIf="form.passwordConfirm.errors.required">Confirm Password is required</div>
+      <div *ngIf="form.passwordConfirm.errors.mustMatch">Passwords must match</div>
     </div>
   </div>
   <button type="submit">Send</button>

@@ -1,4 +1,4 @@
 export interface CharacterEquipment {
-  value: string;
+  id: string;
   count: number;
 }

@@ -1,31 +1,13 @@
-import {CharacterRace} from './about/character.race.model';
+import {CharacterRace} from './character-race.model';
 
-type boundaryValues = {
-  min: number;
-  max: number;
-};
-interface RacesList extends CharacterRace {
-  generatorData: {
-    height: boundaryValues;
-    weight: boundaryValues;
-    ageModifier: number;
-    names: {
-      male: DomLocalization;
-      female: DomLocalization;
-    };
-    image: string;
-  };
-}
-
-
-export const racesList: RacesList[] = [
+export const characterRaceData: CharacterRace[] = [
   {
-    value: 'dwarf',
+    id: 'dwarf',
     title: {
       en: 'Dwarf',
       ru: 'Дварф',
     },
-    generatorData: {
+    raceGenerator: {
       height: {
         max: 5,
         min: 4,
@@ -103,7 +85,7 @@ export const racesList: RacesList[] = [
     abilities: [],
     subRaces: [
       {
-        value: 'dwarfMountain',
+        id: 'dwarfMountain',
         title: {
           en: 'Mountain Dwarf',
           ru: 'Горный Дварф'
@@ -137,7 +119,7 @@ export const racesList: RacesList[] = [
         }
       },
       {
-        value: 'dwarfHill',
+        id: 'dwarfHill',
         title: {
           en: 'Hill Dwarf',
           ru: 'Холмовой Дварф'
@@ -174,12 +156,12 @@ export const racesList: RacesList[] = [
 
   },
   {
-    value: 'gnome',
+    id: 'gnome',
     title: {
       en: 'Gnome',
       ru: 'Гном',
     },
-    generatorData: {
+    raceGenerator: {
       height: {
         min: 3,
         max: 4
@@ -253,7 +235,7 @@ export const racesList: RacesList[] = [
     abilities: ['gnomeCunning'],
     subRaces: [
       {
-        value: 'gnomeForest',
+        id: 'gnomeForest',
         title: {
           en: 'Forest gnome',
           ru: 'Лесной гном',
@@ -287,7 +269,7 @@ export const racesList: RacesList[] = [
         },
       },
       {
-        value: 'gnomeRock',
+        id: 'gnomeRock',
         title: {
           en: 'Rock gnome',
           ru: 'Скальный гном',

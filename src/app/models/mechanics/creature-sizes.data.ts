@@ -1,10 +1,6 @@
-// Категории размеров
-interface CreatureSizes extends DomItem {
-  area: number;
-}
-export const creatureSize: CreatureSizes[] = [
+export const creatureSizeData: CreatureSizes[] = [
   {
-    value: 'tiny',
+    id: 'tiny',
     title: {
       en: 'Tiny',
       ru: 'Крошечный'
@@ -12,7 +8,7 @@ export const creatureSize: CreatureSizes[] = [
     area: 2.5 // 2,5 × 2,5 фута или меньше
   },
   {
-    value: 'small',
+    id: 'small',
     title: {
       en: 'Small',
       ru: 'Маленький',
@@ -20,7 +16,7 @@ export const creatureSize: CreatureSizes[] = [
     area: 5,
   },
   {
-    value: 'medium',
+    id: 'medium',
     title: {
       en: 'Medium',
       ru: 'Средний',
@@ -28,7 +24,7 @@ export const creatureSize: CreatureSizes[] = [
     area: 5,
   },
   {
-    value: 'large',
+    id: 'large',
     title: {
       en: 'Large',
       ru: 'Большой',
@@ -36,7 +32,7 @@ export const creatureSize: CreatureSizes[] = [
     area: 10,
   },
   {
-    value: 'huge',
+    id: 'huge',
     title: {
       en: 'Huge',
       ru: 'Огромный',
@@ -44,7 +40,7 @@ export const creatureSize: CreatureSizes[] = [
     area: 15,
   },
   {
-    value: 'gargantuan',
+    id: 'gargantuan',
     title: {
       en: 'Gargantuan',
       ru: 'Громадный',
